@@ -1,5 +1,18 @@
-  <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
+ 
+   
+
+   <div class = "container py-5">
+<div class="d-flex">
+  <div class="show-card-image">
+    <% @instructor.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  </div>
+  <div class="show-card-text pl-4">
+   <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
   <p>Last name: <%= @instructor.user.last_name %></p>
     <p><%= @instructor.description %></p>
     <p>Sex: <%= @instructor.gender %></p>
-   
+  
+  </div>
+  </div>
