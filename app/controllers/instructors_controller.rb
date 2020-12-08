@@ -14,7 +14,7 @@ class InstructorsController < ApplicationController
   end
 
   def create
-    
+
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
     # authorize @instructor
@@ -28,7 +28,7 @@ class InstructorsController < ApplicationController
       params[:instructor][:packages].each do |package_id|
         InstructorPackage.create(package_id: package_id, instructor: @instructor)
       end
-      redirect_to instructor_path(@instructor)
+      redirect_to instructor_packages_path
     else
       render :new
     end
@@ -48,7 +48,7 @@ class InstructorsController < ApplicationController
   private
 
   def set_instructor
-    @instructor = Instructor.find(params[:id])
+    @instructor = current_user.instructor
   end
 
   def instructor_params
