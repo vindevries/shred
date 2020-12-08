@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :instructors
 
-  resources :instructor_packages, only: [:new, :create] 
-   resources :bookings, only: [:new, :create]
+  resources :instructor_packages, only: [:index, :create]
+  resources :bookings, only: [:new, :create]
   resources :instructor_languages, only: [:new, :create]
   resources :instructor_locations, only: [:new, :create]
 

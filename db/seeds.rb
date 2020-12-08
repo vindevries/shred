@@ -10,4 +10,12 @@ Language.destroy_all
 Location.destroy_all
 ["Bali Changgu", "Bali Kuta", "Bali Sanur", "Lombok"].each { |n| Location.create(name: n) }
 Package.destroy_all
-["q", "b", "m", "x"].each { |n| Package.create(title: n) }
+Package.create(title: "Beginner Lesson", duration: 2, photographer: false, rental: true)
+Package.create(title: "Beginner Lesson", duration: 2, photographer: true, rental: true)
+Package.create(title: "Intermediate Lesson", duration: 2, photographer: false, rental: false)
+Package.create(title: "Intermediate Lesson", duration: 2, photographer: false, rental: true)
+Package.create(title: "Intermediate Lesson", duration: 2, photographer: true, rental: true)
+Package.create(title: "Full day guide", photographer: false, rental: false)
+Package.create(title: "Full day guide", photographer: true, rental: true)
+Package.create(title: "Full day guide",r photographer: true, rental: false)
+

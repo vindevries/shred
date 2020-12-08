@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <% @packages.each do |package| %>
+      <div class="col-md-4">
+        <div class="package-card">
+            <h2><%= package.title %></h2>
+            <% if package.duration %>
+              <h2><%= package.duration %> hours</h2>
+            <% end %>
+            <% if package.rental %>
+             <h2>+ Rental</h2>
+            <% end %>
+            <% if package.photographer %>
+              <h2><i class="fas fa-camera-retro"></i></h2>
+            <% end %>
+            <% if !@instructor.has_package?(package) %>
+              <%= simple_form_for @instructor_package, remote: true do |f| %>
+                <%= f.input :package_id, input_html: {value: package.id}, as: :hidden %>
+                <%= f.input :price %>
+                <%= f.submit %>
+              <% end %>
+            <% end %>
+            <hr>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
