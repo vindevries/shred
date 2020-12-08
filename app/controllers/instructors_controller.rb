@@ -8,20 +8,26 @@ class InstructorsController < ApplicationController
   def show
   end
 
-
   def new
     @user = current_user
     @instructor = Instructor.new
   end
 
   def create
+    
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
     # authorize @instructor
     if @instructor.save
-      # params[:costume][:tags].each do |tag_id|
-      #   CostumeTag.create(tag_id: tag_id, costume: @costume)
-    # end
+      params[:instructor][:languages].each do |language_id|
+        InstructorLanguage.create(language_id: language_id, instructor: @instructor)
+      end
+      params[:instructor][:locations].each do |location_id|
+        InstructorLocation.create(location_id: location_id, instructor: @instructor)
+      end
+      params[:instructor][:packages].each do |package_id|
+        InstructorPackage.create(package_id: package_id, instructor: @instructor)
+      end
       redirect_to instructor_path(@instructor)
     else
       render :new
@@ -29,22 +35,19 @@ class InstructorsController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update
     if @instructor.update(instructor_params)
-    redirect_to instructor_path(@instructor)
+      redirect_to instructor_path(@instructor)
     else
       render :new
     end
   end
 
-
-
   private
 
-   def set_instructor
+  def set_instructor
     @instructor = Instructor.find(params[:id])
   end
 
