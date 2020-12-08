@@ -33,7 +33,11 @@ class InstructorsController < ApplicationController
   end
 
   def update
-    
+    if @instructor.update(instructor_params)
+    redirect_to instructor_path(@instructor)
+    else
+      render :new
+    end
   end
 
 
