@@ -1,22 +1,27 @@
 class InstructorLanguagesController < ApplicationController
   def new
-    @instructor = Instructor.find(params[:instructor_id])
+    # @instructor = Instructor.find(params[:instructor_id])
     @instructor_language = InstructorLanguage.new
   end
 
   def create
-    # @instructor = Instructor.find(params[:costume_id])
+   
     # @languages = Language.find(params[:instructor_language][:language])
-    # @tags.each do |tag|
-    #   costume_tag = InstructorLanguage.new
-    #   instructor_language.instructor = @instructor
-    #    instructor_language.language = tag
-    #   costume_tag.save
-    # endInstructor
-    #  redirect_to costumes_path
+    
+    # params[:instructor_language][:language].each do |language|
+    #   instructor_language = InstructorLanguage.new
+    #   instructor_language.instructor = current_user
+    #   instructor_language.language = language
+    #   instructor_language.save
+    end
 
 
-
+ 
     # redirect_to garden_path(@plant.garden)
   end
+
+
+
+
+
 end

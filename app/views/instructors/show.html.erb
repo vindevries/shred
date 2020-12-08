@@ -10,6 +10,24 @@
     <p>Last name: <%= @instructor.user.last_name %></p>
     <p><%= @instructor.description %></p>
     <p>Sex: <%= @instructor.gender %></p>
+
+    <h3>Locations:</h3>
+     <% @instructor.locations.each do |location| %>
+    
+     <p><%= location.name %></p>
+     <% end %>
+
+     <h3>Languages:</h3>
+      <% @instructor.languages.each do |language| %>
+     <p><%= language.name %></p>
+     <% end %>
+
+     <h3>Packages:</h3>
+      <% @instructor.packages.each do |package| %>
+      
+     <p><%= package.title %></p>
+     <% end %>
+
   </div>
 </div>
 
