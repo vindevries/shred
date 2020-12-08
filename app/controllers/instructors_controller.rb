@@ -10,6 +10,7 @@ class InstructorsController < ApplicationController
   
   
   def new
+    @user = current_user
     @instructor = Instructor.new
   end
   

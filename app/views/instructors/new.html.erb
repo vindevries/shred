@@ -1,4 +1,7 @@
 <div class = "container py-5">
+
+
+<h3> Hello, <%= @user.first_name %></h3>
 <h3>Complete your instructor profile</h3>
 <%= simple_form_for(@instructor) do |f| %>
   <%= f.input :gender, :collection => ["male", "female", "non-binary"] %>
