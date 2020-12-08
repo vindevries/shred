@@ -1,0 +1,17 @@
+<div class = "container py-5">
+   
+
+
+<%= simple_form_for(@instructor) do |f| %>
+  <%= f.input :gender %>
+  <%= f.input :description %>
+
+ 
+
+   <%# f.input :photos, as: :file, input_html: { multiple: true } 
+  f.simple_fields_for :tag do |z|  %>
+   <%# f.input :tags, collection: Tag.all, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false 
+  end %>
+  <%= f.submit "Upload Your Profile", class: "btn btn-primary" %>
+<% end %>
+</div>
