@@ -29,7 +29,21 @@
      <% end %>
 
   </div>
+
 </div>
+
+      
+        <div class="text-dark shadow p-3 mb-5 mt-3 bg-white rounded" %>">
+          <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+          <%= simple_form_for  (@booking) do |f| %>
+            <%= f.input :description, as: :string %>
+            <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
+          
+            <%= f.submit "Complete Booking", class: "btn btn-primary" %>
+             <%# link_to "Back to Search", costumes_path(search: { city: params[:city], size: params[:size], gender: params[:gender], tag: params[:tag] }), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+     
 
 
 
