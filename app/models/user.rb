@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_one :instructor, dependent: :destroy
   has_many :bookings
   has_many :reviews, dependent: :destroy
+  validates :first_name, presence: true
 end
