@@ -5,14 +5,14 @@
 
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1607352244/SHRED/2_u5sbba.jpg", width: 400, height: 300, crop: :fill) %>;">
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+  <h1>SHRED</h1>
 
   <% if user_signed_in? && current_user.instructor %>
-    <h1>Welcome instructr</h1>
+
+    <h1>Welcome instructor</h1>
+
   <% else %>
     <h1>Welcome client</h1>
-
   <% end %>
 </div>
 
