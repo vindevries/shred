@@ -1,12 +1,25 @@
 <div>
-    <p></p>
-    <p></p>
+  <p></p>
+  <p></p>
 </div>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1607352244/SHRED/2_u5sbba.jpg", width: 400, height: 300, crop: :fill) %>;"></div>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1607352244/SHRED/2_u5sbba.jpg", width: 400, height: 300, crop: :fill) %>;">
+  <h1>Pages#home</h1>
+  <p>Find me in app/views/pages/home.html.erb</p>
+
+  <% if user_signed_in && current_user.instructor %>
+    <h1>Welcome instructr</h1>
+  <% else %>
+    <h1>Welcome client</h1>
+
+  <% end %>
+</div>
+
 <p></p>
+
 <div>
-    <h1><center>ABOUT Shred</center></h1>
-    <p><center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar elementum integer enim neque. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Eget sit amet tellus cras adipiscing enim eu. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Massa enim nec dui nunc mattis. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Dictum non consectetur a erat. Velit scelerisque in dictum non consectetur. Nam aliquam sem et tortor consequat id porta. In hac habitasse platea dictumst quisque. Volutpat est velit egestas dui. Habitant morbi tristique senectus et netus et malesuada fames ac. In metus vulputate eu scelerisque felis.
+  <h1><center>ABOUT Shred</center></h1>
+  <p><center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar elementum integer enim neque. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Eget sit amet tellus cras adipiscing enim eu. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Massa enim nec dui nunc mattis. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Dictum non consectetur a erat. Velit scelerisque in dictum non consectetur. Nam aliquam sem et tortor consequat id porta. In hac habitasse platea dictumst quisque. Volutpat est velit egestas dui. Habitant morbi tristique senectus et netus et malesuada fames ac. In metus vulputate eu scelerisque felis.
 
 Aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Libero enim sed faucibus turpis in eu mi bibendum neque. Tristique nulla aliquet enim tortor at auctor urna nunc id. Tempus urna et pharetra pharetra massa. Lacus luctus accumsan tortor posuere ac ut. Lacus sed viverra tellus in hac habitasse platea dictumst. Neque gravida in fermentum et sollicitudin ac. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Id leo in vitae turpis massa sed elementum tempus. Elementum nisi quis eleifend quam. Mauris vitae ultricies leo integer malesuada nunc vel. Felis eget nunc lobortis mattis aliquam faucibus purus in massa. Nunc sed velit dignissim sodales ut eu. Leo duis ut diam quam nulla porttitor massa id neque. Eu scelerisque felis imperdiet proin fermentum leo vel. Id velit ut tortor pretium viverra suspendisse potenti nullam ac.
 
