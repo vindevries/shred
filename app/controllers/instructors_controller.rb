@@ -1,4 +1,6 @@
 class InstructorsController < ApplicationController
+  before_action :set_instructor, only: %i[show edit update destroy]
+  # skip_before_action :authenticate_user!, only: %i[index show]
   def index
     @instructors = Instructor.all
   end
@@ -27,7 +29,11 @@ class InstructorsController < ApplicationController
 
   private
 
+   def set_instructor
+    @instructor = Instructor.find(params[:id])
+  end
+
   def instructor_params
-    params.require(:instructor).permit(:description, :gender, photos: [])
+    params.require(:instructor).permit(:description, :gender, :phone, photos: [])
   end
 end
