@@ -1,1 +1,9 @@
 <h2>Hello it is your dashboard</h2>
+  <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
+  <% @user_pending_bookings.each do |booking| %>
+ 
+  
+   <p> <%= booking.instructor_package.price %> <%= booking.id %> </p>
+
+   <p> <%= booking.description %> </p>
+  <% end %>
