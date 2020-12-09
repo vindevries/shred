@@ -2,8 +2,15 @@
   <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
   <% @user_pending_bookings.each do |booking| %>
  
-  
-   <p> <%= booking.instructor_package.price %> <%= booking.id %> </p>
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"> <%= booking.instructor_package.package.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
+    <p class="card-text"><%= booking.description %></p>
+    <p class="card-text"><%= booking.status %></p>
+    <a href="#" class="card-link">See instructor profile</a>
+    
+  </div>
+</div>
 
-   <p> <%= booking.description %> </p>
   <% end %>
