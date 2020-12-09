@@ -1,9 +1,12 @@
 <div class = "container py-5">
+  <div class="row">
     <% @instructors.each do |instructor| %>
-    <div class="col-md-8">
+      <div class="col-sm">
         <div class="card-body">
-        <h5 class="card-title"><%= link_to instructor.user.first_name, instructor_path(instructor)  %></h5>
-        <p class="card-text"><%= instructor.description %></p>     
-    </div>
+          <h3 class="card-title"><%= link_to instructor.user.first_name, instructor_path(instructor)  %></h3>
+          <p class="card-text"><%= instructor.description %></p>
+        </div>
+      </div>
     <% end %>
+  </div>
 </div>

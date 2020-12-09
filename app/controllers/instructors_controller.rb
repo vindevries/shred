@@ -6,9 +6,9 @@ class InstructorsController < ApplicationController
   end
 
   def show
-    
+
     @booking = Booking.new
-   
+
   end
 
   def new
@@ -28,7 +28,7 @@ class InstructorsController < ApplicationController
       params[:instructor][:locations].each do |location_id|
         InstructorLocation.create(location_id: location_id, instructor: @instructor)
       end
-      params[:instructor][:packages].each do |package_id|
+      params[:instructor][:packages]&.each do |package_id|
         InstructorPackage.create(package_id: package_id, instructor: @instructor)
       end
       redirect_to instructor_packages_path
