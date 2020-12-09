@@ -5,7 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+InstructorPackage.destroy_all
+InstructorLocation.destroy_all
+InstructorLanguage.destroy_all
+Instructor.destroy_all
 Booking.destroy_all
 Language.destroy_all
 ["English", "German", "Indonesian", "French", "Chinese", "Spanish", "Hindi", "Arabic", "Russian", "Bengali", "Portuguese", "Japanese", "Lahnda"].each { |n| Language.create(name: n) }
@@ -21,3 +24,4 @@ Package.create(title: "Full day guide", photographer: false, rental: false)
 Package.create(title: "Full day guide", photographer: true, rental: true)
 Package.create(title: "Full day guide", photographer: true, rental: false)
 
+User.destroy_all
