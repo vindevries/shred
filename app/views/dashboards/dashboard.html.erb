@@ -12,6 +12,7 @@
           <p class="card-text"><%= booking.description %></p>
           <p class="card-text"><%= booking.status %></p>
 
+
           <div class="card-buttons">
           <% if booking.status == "pending" %>
             <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
@@ -19,10 +20,11 @@
           <% end %>
           </div>
 
+
         </div>
       </div>
-      <% end %> 
-    <% else %> 
+      <% end %>
+    <% else %>
       <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
       <% @user_pending_bookings.each do |booking| %>
       <div class="card" style="width: 18rem;">
@@ -31,10 +33,10 @@
           <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
           <p class="card-text"><%= booking.description %></p>
           <p class="card-text"><%= booking.status %></p>
-          <a href="#" class="card-link">See instructor profile</a>
+          <a href="" class="card-link">See instructor profile</a>
         </div>
       </div>
-      <% end %> 
-   <% end %> 
+      <% end %>
+   <% end %>
 
 

@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
   resources :instructor_languages, only: [:new, :create]
   resources :instructor_locations, only: [:new, :create]
+  resources :bookings, only: [] do
+    resources :reviews,only: [:new, :create]
+  end
 
   get "/dashboard", to: "dashboards#dashboard", as: :dashboard
 

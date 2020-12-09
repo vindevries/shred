@@ -1,8 +1,8 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1607433024/SHRED/Surfer-3_djliul.jpg", width: 400, height: 300, crop: :fill) %>;">
   <h2>Catch your Wave</h2>
   <p>Connecting Students with Instructors</p>
-  <form class="form-inline my-lg-0 justify-content-center" action="/costumes">
-      <input class="form-control mr-sm-2" type="text" name="search[city]" placeholder="Where do you want to surf?" aria-label="Search">
+  <form class="form-inline my-lg-0 justify-content-center" action="/instructors">
+      <input class="form-control mr-sm-2" type="text" name="search[location]" placeholder="Where do you want to surf?" aria-label="Search">
         <button class="btn btn-outline-success button my-2 my-sm-0" type="submit">Lets go!</button>
   </form>
 </div>
@@ -24,7 +24,7 @@
         <div class="landing-card mb-3" style="background-image: url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1607437686/SHRED/Surfer-5_vjgyoe.jpg", width: 400, height: 300, crop: :fill) %>);">
           <p>Photo Sessions</p>
         </div>
-      </div>  
+      </div>
       <div class="col-6">
         <div class="landing-card mb-3" style="background-image: url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1607437686/SHRED/Surfer-6_fewc6u.jpg", width: 400, height: 300, crop: :fill) %>);">
           <p>Video Sessions</p>
