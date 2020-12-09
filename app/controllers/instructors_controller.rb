@@ -1,4 +1,6 @@
 class InstructorsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update]
+
   before_action :set_instructor, only: %i[show edit update destroy]
   # skip_before_action :authenticate_user!, only: %i[index show]
   def index
@@ -51,7 +53,7 @@ class InstructorsController < ApplicationController
   private
 
   def set_instructor
-    @instructor = current_user.instructor
+    @instructor = Instructor.find(params[:id])
   end
 
   def instructor_params
