@@ -1,5 +1,5 @@
 class InstructorPackagesController < ApplicationController
-
+before_action :authenticate_user!
   def index
     @packages = Package.all
     @instructor_package = InstructorPackage.new

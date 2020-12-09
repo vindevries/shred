@@ -1,49 +1,46 @@
 <div class = "container py-5">
-  <div class="d-flex">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
     <div class="show-card-image">
       <% @instructor.photos.each do |photo| %>
         <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
       <% end %>
     </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
   <div class="show-card-text pl-4">
     <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
     <p>Last name: <%= @instructor.user.last_name %></p>
     <p><%= @instructor.description %></p>
     <p>Sex: <%= @instructor.gender %></p>
-
     <h3>Locations:</h3>
-     <% @instructor.locations.each do |location| %>
-    
-     <p><%= location.name %></p>
-     <% end %>
-
-     <h3>Languages:</h3>
-      <% @instructor.languages.each do |language| %>
-     <p><%= language.name %></p>
-     <% end %>
-
-     <h3>Packages:</h3>
-      <% @instructor.packages.each do |package| %>
-      
-     <p><%= package.title %></p>
-     <% end %>
-
+    <% @instructor.locations.each do |location| %>
+      <p><%= location.name %></p>
+    <% end %>
+    <h3>Languages:</h3>
+    <% @instructor.languages.each do |language| %>
+      <p><%= language.name %></p>
+    <% end %>
+    <h3>Packages:</h3>
+    <% @instructor.instructor_packages.each do |i_package| %>
+      <p><%= i_package.price %></p>
+      <p><%= i_package.package.title %></p>
+    <% end %>
   </div>
-
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
+  <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+  <%= simple_form_for (@booking) do |f| %>
+    <%= f.input :description, as: :string %>
+    <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
+    <%= f.submit "Complete Booking", class: "btn btn-primary" %>
+  <% end %>
+</div>
 </div>
 
-      
-        <div class="text-dark shadow p-3 mb-5 mt-3 bg-white rounded" %>">
-          <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
-          <%= simple_form_for  (@booking) do |f| %>
-            <%= f.input :description, as: :string %>
-            <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
-          
-            <%= f.submit "Complete Booking", class: "btn btn-primary" %>
-             <%# link_to "Back to Search", costumes_path(search: { city: params[:city], size: params[:size], gender: params[:gender], tag: params[:tag] }), class: "btn btn-primary" %>
-          <% end %>
-        </div>
-     
 
 
 
