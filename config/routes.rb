@@ -5,8 +5,17 @@ Rails.application.routes.draw do
 
   resources :instructor_packages, only: [:index, :create]
   resources :bookings, only: [:new, :create]
+  resources :bookings, only: [] do
+    member do
+      post :accept
+      post :reject
+    end
+  end
   resources :instructor_languages, only: [:new, :create]
   resources :instructor_locations, only: [:new, :create]
+  resources :bookings, only: [] do
+    resources :reviews,only: [:new, :create]
+  end
 
   get "/dashboard", to: "dashboards#dashboard", as: :dashboard
 
