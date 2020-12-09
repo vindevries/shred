@@ -23,9 +23,10 @@
      <% end %>
 
      <h3>Packages:</h3>
-      <% @instructor.packages.each do |package| %>
+      <% @instructor.instructor_packages.each do |i_package| %>
       
-     <p><%= package.title %></p>
+     <p><%= i_package.package.title %></p>
+     <p>Price:<%= i_package.price %></p>
      <% end %>
 
   </div>
