@@ -8,7 +8,7 @@ class InstructorsController < ApplicationController
   end
 
   def show
-
+    authorize @instructor
     @booking = Booking.new
 
   end
@@ -16,13 +16,14 @@ class InstructorsController < ApplicationController
   def new
     @user = current_user
     @instructor = Instructor.new
+    authorize @instructor
   end
 
   def create
 
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
-    # authorize @instructor
+    authorize @instructor
     if @instructor.save
       params[:instructor][:languages].each do |language_id|
         InstructorLanguage.create(language_id: language_id, instructor: @instructor)

@@ -1,6 +1,8 @@
 class InstructorPackagesController < ApplicationController
 before_action :authenticate_user!
+
   def index
+    skip_policy_scope
     @packages = Package.all
     @instructor_package = InstructorPackage.new
     @instructor = current_user.instructor
@@ -13,6 +15,7 @@ before_action :authenticate_user!
     @instructor = current_user.instructor
     @instructor_package = InstructorPackage.new(instructor_package_params)
     @instructor_package.instructor = @instructor
+    authorize @instructor_package
     if @instructor_package.save
       redirect_to instructor_packages_path
     else
