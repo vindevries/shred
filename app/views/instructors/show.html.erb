@@ -22,8 +22,9 @@
       <p><%= language.name %></p>
     <% end %>
     <h3>Packages:</h3>
-    <% @instructor.packages.each do |package| %>
-      <p><%= package.title %></p>
+    <% @instructor.instructor_packages.each do |i_package| %>
+      <p><%= i_package.price %></p>
+      <p><%= i_package.package.title %></p>
     <% end %>
   </div>
     </div>
