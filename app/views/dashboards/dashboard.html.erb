@@ -11,7 +11,16 @@
           <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
           <p class="card-text"><%= booking.description %></p>
           <p class="card-text"><%= booking.status %></p>
-          <a href="" class="card-link">ACCEPT OR REJECT</a>
+
+
+          <div class="card-buttons">
+          <% if booking.status == "pending" %>
+            <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+            <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+          <% end %>
+          </div>
+
+
         </div>
       </div>
       <% end %>
