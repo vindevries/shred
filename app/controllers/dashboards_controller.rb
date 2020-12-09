@@ -5,7 +5,7 @@ class DashboardsController < ApplicationController
 
     # @instructor_pending_bookings = current_user.bookings.where(status: "pending")
     if current_user.instructor 
-      @instructor_pending_bookings = current_user.instructor.bookings.where(status: "pending")
+      @instructor_pending_bookings = Booking.joins(instructor_package: :instructor).where(instructors: {id: current_user.instructor.id})
     else
       @user_pending_bookings = current_user.bookings.where(status: "pending")
     end
