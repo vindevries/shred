@@ -8,4 +8,9 @@ class Booking < ApplicationRecord
   def set_status
     self.status = "pending"
   end
+  
+def instructor
+  instructor_package.instructor
+end
+
 end

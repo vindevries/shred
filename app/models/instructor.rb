@@ -7,6 +7,8 @@ class Instructor < ApplicationRecord
   has_many :locations, through: :instructor_locations
   has_many :languages, through: :instructor_languages
   has_many :packages, through: :instructor_packages
+  has_many :bookings, through: :instructor_packages
+  has_many :reviews, through: :bookings
   has_many_attached :photos
   validates :description, presence: true
 
