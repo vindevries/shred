@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: %i[accept reject]
+  before_action :set_booking, only: %i[accept reject edit update]
   def new
     @booking = Booking.new
     # authorize @booking
@@ -18,6 +18,20 @@ class BookingsController < ApplicationController
       redirect_to dashboard_path
     else
       render "instructors/show"
+    end
+  end
+
+  def edit
+    authorize @booking
+    @instructor = @booking.instructor
+  end
+
+  def update
+    authorize @booking
+    if @booking.update(booking_params)
+      redirect_to dashboard_path
+    else
+      render :new
     end
   end
 
@@ -42,6 +56,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:description, :status)
+    params.require(:booking).permit(:description, :instructor_package_id)
   end
 end

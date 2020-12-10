@@ -9,6 +9,10 @@ class BookingPolicy < ApplicationPolicy
     user && !user.instructor
   end
 
+  def update?
+    user && record.user
+  end
+
   def accept?
     user && record.instructor
   end
