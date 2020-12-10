@@ -3,6 +3,8 @@
     background-size: cover;
     height: 350px;
     border-radius: 16px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     border: none;
     box-shadow: 1px 1px 2px #898989;
     color: $gray;
@@ -19,4 +21,3 @@
       opacity: 0.7;
     }
   }
-  
