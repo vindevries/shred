@@ -4,6 +4,7 @@ class InstructorsController < ApplicationController
   before_action :set_instructor, only: %i[show edit update destroy]
   # skip_before_action :authenticate_user!, only: %i[index show]
   def index
+    skip_policy_scope
     @instructors = Instructor.all
   end
 
