@@ -22,6 +22,13 @@ before_action :authenticate_user!
       @packages = Package.all
       render "index"
     end
+  end
+
+  def edit
+
+  end
+
+  def update
 
   end
 
