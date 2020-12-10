@@ -8,4 +8,12 @@ class BookingPolicy < ApplicationPolicy
   def create?
     user && !user.instructor
   end
+
+  def accept?
+    user && record.instructor
+  end
+
+  def reject?
+    user && record.instructor
+  end
 end

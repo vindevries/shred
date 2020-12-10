@@ -1,0 +1,14 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"> <%= booking.instructor_package.package.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
+    <p class="card-text"><%= booking.description %></p>
+    <p class="card-text"><%= booking.status %></p>
+    <%= link_to "View Instructor Profile", instructor_path(booking.instructor), class: "nav-link" %>
+    <div class="card-buttons">
+      <% if policy(Review.new(booking: booking)).create? %>
+        <%= link_to "Had the session already? Leave a review!", new_booking_review_path(booking), class: "btn btn-primary mr-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>
