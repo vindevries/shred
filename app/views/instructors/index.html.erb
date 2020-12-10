@@ -1,83 +1,96 @@
-<div class="content">
-  <div class = "container-fluid">
+<div class="container-fluid py-5">
+  <form class="" action="/instructors">
     <div class="row">
-      <div class="col-md-8">
-        <h2 class="my-4 text-center">Search Instructors:</h2>
-          <form class="" action="/instructors">
-            <div class="d-flex justify-content-between">
-              <input class="form-control mr-sm-2 mb-3 w-60" type="text" name="search[city]" placeholder="Enter City" aria-label="Search">
-              <div class="form-group w-100">
-              </div>
-            <%= link_to instructors_path do %>
-              <i class="fas fa-sync mt-2 ml-2"></i>
-            <% end %>
-            </div>
-            <div class="d-flex align-items-center">
-              <p>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="false" aria-controls="collapseExample">
-                  Category
-                </button>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                  Languages
-                </button>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                  Gender
-                </button>
-              </p>
-              <div class="collapse" id="collapseCategory">
-                <div class="card card-body">
-                  Category Tags.
-                </div>
-              </div>
-              <div class="collapse" id="collapseLanguages">
-                <div class="card card-body">
-                  Languages Tags.
-                </div>
-              </div>
-              <div class="collapse" id="collapseGender">
-                <div class="card card-body">
-                  Gender Tags.
-                </div>
-              </div>
-              <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
-            </div>
-          </form>  
+      <div class="col-md-3">
+        <div class="d-flex justify-content-between">
+          <input class="form-control mr-sm-2 mb-3 w-60" type="text" name="search[city]" placeholder="Enter City" aria-label="Search">
+          <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-md-10">
+      <div class="d-flex">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category
+          </button>
+          <div class="dropdown-menu" aria-labelledby="categoryMenu">
+          <div class="check-box mr-5">
+          <% ["beginner", "intermediate", "photo"].each do |category| %>
+            <div class="d-flex">
+              <label for="<%= category %>"><%= category.capitalize %></label>
+              <input  type="checkbox" value="<%= category %>" id="<%= category %>" name="search[x]">
+            </div>
+          <% end %>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="languageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Languages
+          </button>
+          <div class="dropdown-menu" aria-labelledby="languageMenu">
+            <div class="check-box mr-5">
+              <% ["English", "German", "French", "Spanish", "French", "Russian", "Japanese", "Korean"].each do |language| %>
+              <div class="d-flex">
+                <label for="<%= language %>"><%= language.capitalize %></label>
+                <input  type="checkbox" value="<%= language %>" id="<%= language %>" name="search[x]">
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="genderMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Gender
+            </button>
+            <div class="dropdown-menu" aria-labelledby="genderMenu">
+            <div class="check-box mr-5">
+              <% ["Male", "Female", "Non-Binary"].each do |gender| %>
+              <div class="d-flex">
+                <label for="<%= gender %>"><%= gender.capitalize %></label>
+                <input  type="checkbox" value="<%= gender %>" id="<%= gender %>" name="search[x]">
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>  
+  </div>
+</div>
+     <div class="row mt-5">
+        <div class="col-md-12">
           <% @instructors.each do |instructor| %>
           <% if instructor.photos.attached? %>
           <div class="col-md-12">
             <div class="costume-card card m-4 p-3 flex-row">
               <div class="row w-100">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <%= cl_image_tag instructor.photos.first.key %>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <div class="card-body">
                       <div class="col-sm">
                         <div class="card-body">
                           <h3 class="card-title"><%= link_to instructor.user.first_name, instructor_path(instructor)  %></h3>
                           <p class="card-text"><%= instructor.description %></p>
+                          <p>2do = Put Review Score Here</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="col-md-3">
+                  <div class="card-body">
+                    <div class="col-sm">
+                      <div class="card-body">
+                        <p>Put Category + Price Here<p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
           </div>
           <% end %>
           <% end %>
         </div>
         <div class="col-md-4">
-          <div id="map"
-          style="width: 100%; height: 100vh; top:60px"
-          class= "position-fixed"
-          data-markers="<%= @markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
       </div>
-    </div>
-  </div>
-</div>
