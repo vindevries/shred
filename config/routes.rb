@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :instructors
 
   resources :instructor_packages, only: [:index, :create]
-  resources :bookings, only: [:new, :create]
+  resources :bookings, only: [:new, :create, :edit, :update]
   resources :bookings, only: [] do
     member do
       post :accept

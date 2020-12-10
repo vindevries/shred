@@ -9,6 +9,10 @@ class InstructorPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user == record.user
+  end
+
   def create?
     user && !user.instructor&.persisted?
   end

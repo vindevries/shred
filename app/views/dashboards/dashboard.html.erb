@@ -10,9 +10,13 @@
         <p class="card-text"><%= booking.description %></p>
         <p class="card-text"><%= booking.status %></p>
         <div class="card-buttons">
-          <% if booking.status == "pending" && policy(Booking).accept? %>
-            <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
-            <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+          <% if booking.status == "pending" %>
+            <% if policy(booking).accept? %>
+              <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+            <% end %>
+            <% if policy(booking).accept? %>
+              <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+            <% end %>
           <% end %>
         </div>
       </div>

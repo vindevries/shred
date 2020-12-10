@@ -21,7 +21,6 @@ class InstructorsController < ApplicationController
   end
 
   def create
-
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
     authorize @instructor
@@ -42,9 +41,11 @@ class InstructorsController < ApplicationController
   end
 
   def edit
+    authorize @instructor
   end
 
   def update
+    authorize @instructor
     if @instructor.update(instructor_params)
       redirect_to instructor_path(@instructor)
     else

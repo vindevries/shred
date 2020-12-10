@@ -5,6 +5,9 @@
     <p class="card-text"><%= booking.description %></p>
     <p class="card-text"><%= booking.status %></p>
     <%= link_to "View Instructor Profile", instructor_path(booking.instructor), class: "nav-link" %>
+    <% if policy(booking).update? %>
+      <%= link_to "EDIT", edit_booking_path(booking), class: "btn btn-danger mr-3" %>
+    <% end %>
     <div class="card-buttons">
       <% if policy(Review.new(booking: booking)).create? %>
         <%= link_to "Had the session already? Leave a review!", new_booking_review_path(booking), class: "btn btn-primary mr-2" %>
