@@ -29,23 +29,18 @@
     </div>
   </div>
 </div>
-<div class="container">
+<% if policy(Booking).create? %>
+  <div class="container">
   <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
-  <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
-  <%= simple_form_for (@booking) do |f| %>
-    <%= f.input :description, as: :string %>
-    <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
-    <%= f.submit "Complete Booking", class: "btn btn-primary" %>
-  <% end %>
+    <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+    <%= simple_form_for (@booking) do |f| %>
+      <%= f.input :description, as: :string %>
+      <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
+      <%= f.submit "Complete Booking", class: "btn btn-primary" %>
+    <% end %>
   </div>
-</div>
-
-
-
-
-
-
-
+  </div>
+<% end %>
   <% @instructor.reviews.each do |review| %>
     <div class="card text-dark">
       <p><%= review.title %></p>
@@ -53,7 +48,7 @@
       <p>Rating: <%= review.rating %></p>
     </div>
   <% end %>
-   
+
 
 
 

@@ -4,11 +4,12 @@ class InstructorsController < ApplicationController
   before_action :set_instructor, only: %i[show edit update destroy]
   # skip_before_action :authenticate_user!, only: %i[index show]
   def index
+    skip_policy_scope
     @instructors = Instructor.all
   end
 
   def show
-
+    authorize @instructor
     @booking = Booking.new
 
   end
@@ -16,13 +17,14 @@ class InstructorsController < ApplicationController
   def new
     @user = current_user
     @instructor = Instructor.new
+    authorize @instructor
   end
 
   def create
 
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
-    # authorize @instructor
+    authorize @instructor
     if @instructor.save
       params[:instructor][:languages].each do |language_id|
         InstructorLanguage.create(language_id: language_id, instructor: @instructor)

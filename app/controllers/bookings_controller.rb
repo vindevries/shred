@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @instructor_package = InstructorPackage.find(params[:booking][:instructor_package_id])
     @booking.instructor_package = @instructor_package
-    # authorize @booking
+    authorize @booking
 
     if @booking.save
       redirect_to dashboard_path
