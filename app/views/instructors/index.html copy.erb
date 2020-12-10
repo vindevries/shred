@@ -1,0 +1,64 @@
+<div class="content">
+  <div class = "container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="my-4 text-center">Search Instructors:</h2>
+          <form class="" action="/instructors">
+            <div class="d-flex justify-content-between">
+              <input class="form-control mr-sm-2 mb-3 w-60" type="text" name="search[city]" placeholder="Enter City" aria-label="Search">
+              <div class="form-group w-100">
+              </div>
+            <%= link_to instructors_path do %>
+              <i class="fas fa-sync mt-2 ml-2"></i>
+            <% end %>
+            </div>
+
+
+            <div class="d-flex align-items-center">
+
+                <div class="card card-body">
+                  <div class="check-box mr-5">
+                    <% ["male", "female", "unisex"].each do |gender| %>
+                      <label for="<%= gender %>"><%= gender.capitalize %></label>
+                      <input hidden type="checkbox" value="<%= gender %>" id="<%= gender %>" name="search[gender]">
+                    <% end %>
+                  </div>
+                </div>
+              <div>
+                <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
+              </div>
+            </div>
+          </form>  
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-10">
+          <% @instructors.each do |instructor| %>
+          <% if instructor.photos.attached? %>
+          <div class="col-md-12">
+            <div class="costume-card card m-4 p-3 flex-row">
+              <div class="row w-100">
+                <div class="col-md-4">
+                  <%= cl_image_tag instructor.photos.first.key %>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                      <div class="col-sm">
+                        <div class="card-body">
+                          <h3 class="card-title"><%= link_to instructor.user.first_name, instructor_path(instructor)  %></h3>
+                          <p class="card-text"><%= instructor.description %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+</div>
