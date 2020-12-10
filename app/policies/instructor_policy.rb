@@ -10,7 +10,7 @@ class InstructorPolicy < ApplicationPolicy
   end
 
   def create?
-    user && !user.instructor.persisted?
+    user && !user.instructor&.persisted?
   end
 
 end
