@@ -3,19 +3,16 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @user = current_user
     @review = Review.new
-    @review.booking = @booking
-    authorize @review
+    authorize @booking, policy_class: ReviewPolicy
   end
 
   def create
     skip_policy_scope
     @booking = Booking.find(params[:booking_id])
+    authorize @booking, policy_class: ReviewPolicy
     @review = Review.new(review_params)
     @review.booking = @booking
     @review.user = current_user
-    authorize @review
-    # authorize @booking, policy_class: ReviewPolicy
-
     if @review.save
       redirect_to dashboard_path
     else
