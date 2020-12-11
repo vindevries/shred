@@ -29,6 +29,8 @@
     </div>
   </div>
 </div>
+
+<% if current_user =! @instructor.user %>
 <div class="container">
   <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
   <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
@@ -40,20 +42,23 @@
   </div>
 </div>
 
+<% end %>
 
 
 
+<h2>Rewies</h2>
+<% @instructor.reviews.each do |review| %>
+<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Review from <%= review.user.first_name %></div>
+  <div class="card-body">
+    <h5 class="card-title"><%= review.title %></h5>
+    <p class="card-text"><%= review.description %></p>
+    <p class="card-text"><%= review.rating %></p>
+  </div>
+</div>
+ <% end %>
 
 
-
-  <% @instructor.reviews.each do |review| %>
-    <div class="card text-dark">
-      <p><%= review.title %></p>
-      <p><%= review.description %></p>
-      <p>Rating: <%= review.rating %></p>
-    </div>
-  <% end %>
-   
 
 
 
