@@ -6,6 +6,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
+   
     user && record.booking.user && !record.booking.review
   end
 end

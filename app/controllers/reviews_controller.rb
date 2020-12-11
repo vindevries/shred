@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    skip_policy_scope
     @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
     @review.booking = @booking
@@ -18,6 +19,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to dashboard_path
     else
+      flash[:alert] = "Something went wrong."
       render "new"
     end
   end

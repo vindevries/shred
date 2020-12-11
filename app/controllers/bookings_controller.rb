@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
 
   # /costumes/:costume_id/bookings
   def create
+    
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @instructor_package = InstructorPackage.find(params[:booking][:instructor_package_id])
@@ -27,6 +28,7 @@ class BookingsController < ApplicationController
   end
 
   def update
+    skip_policy_scope
     authorize @booking
     if @booking.update(booking_params)
       redirect_to dashboard_path
