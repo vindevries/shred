@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-3">
         <div class="d-flex justify-content-between">
-          <input class="form-control mr-sm-2 mb-3 w-60" type="text" name="search[city]" placeholder="Enter City" aria-label="Search">
+          <input class="form-control mr-sm-2 mb-3 w-60" type="text" name="search[location]" placeholder="Enter City" aria-label="Search">
           <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <% ["beginner", "intermediate", "photo"].each do |category| %>
             <div class="d-flex">
               <label for="<%= category %>"><%= category.capitalize %></label>
-              <input  type="checkbox" value="<%= category %>" id="<%= category %>" name="search[x]">
+              <input  type="checkbox" value="<%= category %>" id="<%= category %>" name="search[package]">
             </div>
           <% end %>
           </div>
@@ -31,7 +31,7 @@
               <% ["English", "German", "French", "Spanish", "French", "Russian", "Japanese", "Korean"].each do |language| %>
               <div class="d-flex">
                 <label for="<%= language %>"><%= language.capitalize %></label>
-                <input  type="checkbox" value="<%= language %>" id="<%= language %>" name="search[x]">
+                <input  type="checkbox" value="<%= language %>" id="<%= language %>" name="search[language]">
               </div>
               <% end %>
             </div>
@@ -45,7 +45,7 @@
               <% ["Male", "Female", "Non-Binary"].each do |gender| %>
               <div class="d-flex">
                 <label for="<%= gender %>"><%= gender.capitalize %></label>
-                <input  type="checkbox" value="<%= gender %>" id="<%= gender %>" name="search[x]">
+                <input  type="checkbox" value="<%= gender %>" id="<%= gender %>" name="search[gender]">
               </div>
               <% end %>
             </div>

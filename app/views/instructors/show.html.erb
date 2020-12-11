@@ -1,54 +1,53 @@
 <div class = "container py-5">
   <% if policy(@instructor).update? %>
     <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
-  <% end %>
-  <% if current_user != @instructor.user %>
+    <% end %>
+    <% if current_user != @instructor.user %>
     <%= link_to "back", instructors_path %>
   <% end %>
+  
   <div class="row">
     <div class="col-xs-12 col-md-6">
-    <div class="show-card-image">
-      <% @instructor.photos.each do |photo| %>
+      <div class="show-card-image">
+        <% @instructor.photos.each do |photo| %>
         <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
     </div>
     <div class="col-xs-12 col-md-6">
-  <div class="show-card-text pl-4">
-    <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
-    <p>Last name: <%= @instructor.user.last_name %></p>
-    <p><%= @instructor.description %></p>
-    <h3>Locations:</h3>
-    <% @instructor.locations.each do |location| %>
-      <p><%= location.name %></p>
-    <% end %>
-    <h3>Languages:</h3>
-    <% @instructor.languages.each do |language| %>
-      <p><%= language.name %></p>
-    <% end %>
-    <h3>Packages:</h3>
-    <% @instructor.instructor_packages.each do |i_package| %>
-      <p><%= i_package.package.title %>: <%= i_package.price %></p>
-    <% end %>
-  </div>
+      <div class="show-card-text pl-4">
+        <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
+        <p>Last name: <%= @instructor.user.last_name %></p>
+        <p><%= @instructor.gender %></p>
+        <p><%= @instructor.description %></p>
+        <h3>Locations:</h3>
+        <% @instructor.locations.each do |location| %>
+        <p><%= location.name %></p>
+        <% end %>
+        <h3>Languages:</h3>
+        <% @instructor.languages.each do |language| %>
+        <p><%= language.name %></p>
+        <% end %>
+        <h3>Packages:</h3>
+        <% @instructor.instructor_packages.each do |i_package| %>
+        <p><%= i_package.package.title %>: <%= i_package.price %></p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
 <% if policy(Booking).create? %>
-  <div class="container">
+<div class="container">
   <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
     <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
     <%= render "bookings/booking_form" %>
   </div>
-
 </div>
-
 <% end %>
 
 
 
-<h2>Rewies</h2>
+<h2>Reviews</h2>
 <% @instructor.reviews.each do |review| %>
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
   <div class="card-header">Review from <%= review.user.first_name %></div>
@@ -58,20 +57,16 @@
     <p class="card-text"><%= review.rating %></p>
   </div>
 </div>
- <% end %>
-
-  </div>
 <% end %>
-
-  <% @instructor.reviews.each do |review| %>
-    <div class="card text-dark">
-      <p><%= review.title %></p>
-      <p><%= review.description %></p>
-      <p>Rating: <%= review.rating %></p>
-    </div>
-  <% end %>
+</div>
 
 
 
 
-
+<% @instructor.reviews.each do |review| %>
+<div class="card text-dark">
+  <p><%= review.title %></p>
+  <p><%= review.description %></p>
+  <p>Rating: <%= review.rating %></p>
+</div>
+<% end %>
