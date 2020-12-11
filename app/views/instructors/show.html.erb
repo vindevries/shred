@@ -18,20 +18,20 @@
       <div class="show-card-text pl-4">
         <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
         <p>Last name: <%= @instructor.user.last_name %></p>
-        <p><%= @instructor.gender %></p>
         <p><%= @instructor.description %></p>
         <h3>Locations:</h3>
         <% @instructor.locations.each do |location| %>
-        <p><%= location.name %></p>
+          <p><%= location.name %></p>
         <% end %>
         <h3>Languages:</h3>
-        <% @instructor.languages.each do |language| %>
-        <p><%= language.name %></p>
+          <% @instructor.languages.each do |language| %>
+          <p><%= language.name %></p>
         <% end %>
         <h3>Packages:</h3>
         <% @instructor.instructor_packages.each do |i_package| %>
-        <p><%= i_package.package.title %>: <%= i_package.price %></p>
+          <p><%= i_package.package.title %>: <%= i_package.price %></p>
         <% end %>
+        <%= link_to "update packages", instructor_packages_path %>
       </div>
     </div>
   </div>
@@ -44,9 +44,6 @@
   </div>
 </div>
 <% end %>
-
-
-
 <h2>Reviews</h2>
 <% @instructor.reviews.each do |review| %>
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -59,10 +56,6 @@
 </div>
 <% end %>
 </div>
-
-
-
-
 <% @instructor.reviews.each do |review| %>
 <div class="card text-dark">
   <p><%= review.title %></p>

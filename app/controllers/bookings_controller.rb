@@ -31,7 +31,7 @@ class BookingsController < ApplicationController
     if @booking.update(booking_params)
       redirect_to dashboard_path
     else
-      render :new
+      render :edit
     end
   end
 

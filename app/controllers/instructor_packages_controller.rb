@@ -1,7 +1,7 @@
 class InstructorPackagesController < ApplicationController
 before_action :authenticate_user!
 before_action :set_instructor, only: %i[index create]
-before_action :set_instructor_package, only: %i[edit update]
+before_action :set_instructor_package, only: %i[destroy]
 
   def index
     skip_policy_scope
@@ -17,20 +17,20 @@ before_action :set_instructor_package, only: %i[edit update]
     @instructor_package.instructor = @instructor
     authorize @instructor_package
     if @instructor_package.save
-      redirect_to instructor_packages_path
+      flash[:notice] = "The package has been added to your offer"
+      redirect_to instructor_packages_path(anchor: "package-#{@instructor_package.package_id}")
     else
       @packages = Package.all
       render "index"
     end
   end
 
-  def edit
-
+  def destroy
+    authorize @instructor_package
+    @instructor_package.destroy
+    redirect_to instructor_packages_path
   end
 
-  def update
-
-  end
 
   private
 
@@ -38,7 +38,7 @@ before_action :set_instructor_package, only: %i[edit update]
     @instructor = current_user.instructor
   end
 
-  def set_instructor_packages
+  def set_instructor_package
     @instructor_package = InstructorPackage.find(params[:id])
   end
 
