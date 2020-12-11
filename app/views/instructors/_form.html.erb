@@ -1,3 +1,4 @@
+<div class = "container py-5">
   <%= simple_form_for(@instructor) do |f| %>
     <%= f.input :gender, :collection => ["male", "female", "non-binary"] %>
     <%= f.input :description, label: "Tell your students about you and your services" %>
@@ -19,3 +20,4 @@
     <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Upload a profile picture" %>
     <%= f.submit "Continue", class: "btn btn-primary" %>
   <% end %>
+<div>

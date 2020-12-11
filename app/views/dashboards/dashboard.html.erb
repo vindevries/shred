@@ -1,3 +1,4 @@
+<div class = "container py-5">
 <h2>Hello it is your dashboard</h2>
 <% if current_user.instructor  %>
   <h2 class="text-center mt-1 mb-3">You are an INSTRUCTOR</h2>
@@ -31,5 +32,4 @@
     <%= render "card", booking: booking %>
   <% end %>
 <% end %>
-
-
+</div>
