@@ -1,35 +1,38 @@
-<h2>Hello it is your dashboard</h2>
-<% if current_user.instructor  %>
-  <h2 class="text-center mt-1 mb-3">You are an INSTRUCTOR</h2>
-  <h2 class="text-center mt-1 mb-3">Your INCOMING Bookings</h2>
-  <% @instructor_pending_bookings.each do |booking| %>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title"> <%= booking.instructor_package.package.title %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
-        <p class="card-text"><%= booking.description %></p>
-        <p class="card-text"><%= booking.status %></p>
-        <div class="card-buttons">
-          <% if booking.status == "pending" %>
-            <% if policy(booking).accept? %>
-              <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+<div class = "container py-5">
+
+  <h2 class="text-center mt-1 mb-3">Instructor's Dashboard</h2>
+  <% if current_user.instructor  %>
+    <h2 class="text-center mt-1 mb-3">Welcome Back</h2>
+    <h2 class="text-center mt-1 mb-3"><strong>Please review your incoming bookings</strong></h2>
+    <p></p>
+    <% @instructor_pending_bookings.each do |booking| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"> <%= booking.instructor_package.package.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
+          <p class="card-text"><%= booking.description %></p>
+          <p class="card-text"><%= booking.status %></p>
+          <div class="card-buttons">
+            <% if booking.status == "pending" %>
+              <% if policy(booking).accept? %>
+                <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+              <% end %>
+              <% if policy(booking).accept? %>
+                <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+              <% end %>
             <% end %>
-            <% if policy(booking).accept? %>
-              <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
-            <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
+    <% @user_pending_bookings.each do |booking| %>
+      <%= render "card", booking: booking %>
+    <% end %>
+    <% @user_accepted_bookings.each do |booking| %>
+      <%= render "card", booking: booking %>
+    <% end %>
   <% end %>
-<% else %>
-  <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
-  <% @user_pending_bookings.each do |booking| %>
-    <%= render "card", booking: booking %>
-  <% end %>
-  <% @user_accepted_bookings.each do |booking| %>
-    <%= render "card", booking: booking %>
-  <% end %>
-<% end %>
 
-
+</div>
