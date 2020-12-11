@@ -2,6 +2,7 @@
 <% if current_user.instructor  %>
   <h2 class="text-center mt-1 mb-3">You are an INSTRUCTOR</h2>
   <h2 class="text-center mt-1 mb-3">Your INCOMING Bookings</h2>
+  <div class="container d-flex justify-content-between">
   <% @instructor_pending_bookings.each do |booking| %>
     <div class="card" style="width: 18rem;">
       <div class="card-body">
@@ -22,6 +23,7 @@
       </div>
     </div>
   <% end %>
+</div>
 <% else %>
   <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
   <% @user_pending_bookings.each do |booking| %>

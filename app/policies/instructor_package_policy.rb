@@ -8,4 +8,8 @@ class InstructorPackagePolicy < ApplicationPolicy
   def create?
     user.instructor
   end
+
+  def destroy?
+    user == record.instructor.user
+  end
 end

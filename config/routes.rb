@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'instructor_languages/destroy'
+  get 'instructor_locations/destroy'
   devise_for :users
   root to: 'pages#home'
   resources :instructors
 
-  resources :instructor_packages, only: [:index, :create]
+  resources :instructor_packages, only: [:index, :create, :destroy]
+  resources :instructor_locations, only: [:destroy]
+  resources :instructor_languages, only: [:destroy]
   resources :bookings, only: [:new, :create, :edit, :update]
   resources :bookings, only: [] do
     member do
