@@ -2,27 +2,27 @@
   <form class="" action="/instructors">
     <div class="row">
       <div class="col-md-3">
-        <div class="d-flex justify-content-between">
-          <input class="form-control mr-sm-2 mb-3 w-60" type="text" name="search[location]" placeholder="Enter City" aria-label="Search">
-          <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
-        </div>
+          <div class="d-flex justify-content-between">
+            <input class="form-control mr-sm-2 w-60" type="text" name="search[location]" placeholder="Enter City" aria-label="Search">
+          </div>
       </div>
       <div class="d-flex">
-        <div class="dropdown">
+        <div class="dropdown mr-4">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Category
           </button>
           <div class="dropdown-menu" aria-labelledby="categoryMenu">
-          <div class="check-box mr-5">
-          <% ["beginner", "intermediate", "photo"].each do |category| %>
-            <div class="d-flex">
-              <label for="<%= category %>"><%= category.capitalize %></label>
-              <input  type="checkbox" value="<%= category %>" id="<%= category %>" name="search[package]">
+            <div class="check-box mr-5">
+              <% ["beginner", "intermediate", "photo"].each do |category| %>
+                <div class="d-flex">
+                  <label for="<%= category %>"><%= category.capitalize %></label>
+                  <input  type="checkbox" value="<%= category %>" id="<%= category %>" name="search[package]">
+                </div>
+              <% end %>
             </div>
-          <% end %>
           </div>
         </div>
-        <div class="dropdown">
+        <div class="dropdown mr-4">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="languageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Languages
           </button>
@@ -36,7 +36,8 @@
               <% end %>
             </div>
           </div>
-          <div class="dropdown">
+        </div>
+          <div class="dropdown mr-4">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="genderMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Gender
             </button>
@@ -50,10 +51,12 @@
               <% end %>
             </div>
           </div>
-        </div>
+          </div>
+          <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
 </div>
 <div class="row mt-5">
   <div class="col-md-12">
@@ -94,3 +97,14 @@
   </div>
   <div class="col-md-4">
 </div>
+
+
+
+
+
+
+
+
+
+
+
