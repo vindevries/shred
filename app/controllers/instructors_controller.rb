@@ -58,14 +58,28 @@ class InstructorsController < ApplicationController
 
   def edit
     authorize @instructor
+    @instructor_locations = @instructor.locations.pluck(:location_id)
+    @available_locations = Location.where.not(id: @instructor_locations)
+    @instructor_languages = @instructor.languages.pluck(:language_id)
+    @available_languages = Language.where.not(id: @instructor_languages)
   end
 
   def update
     authorize @instructor
+    if params[:instructor][:languages]
+      params[:instructor][:languages].each do |language_id|
+        InstructorLanguage.create(language_id: language_id, instructor: @instructor)
+      end
+    end
+    if params[:instructor][:locations]
+      params[:instructor][:locations].each do |location_id|
+        InstructorLocation.create(location_id: location_id, instructor: @instructor)
+      end
+    end
     if @instructor.update(instructor_params)
       redirect_to instructor_path(@instructor)
     else
-      render :new
+      render :edit
     end
   end
 

@@ -18,32 +18,31 @@
       <div class="show-card-text pl-4">
         <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
         <p>Last name: <%= @instructor.user.last_name %></p>
-        <p><%= @instructor.gender %></p>
         <p><%= @instructor.description %></p>
         <h3>Locations:</h3>
         <% @instructor.locations.each do |location| %>
-        <p><%= location.name %></p>
+          <p><%= location.name %></p>
         <% end %>
         <h3>Languages:</h3>
-        <% @instructor.languages.each do |language| %>
-        <p><%= language.name %></p>
+          <% @instructor.languages.each do |language| %>
+          <p><%= language.name %></p>
         <% end %>
         <h3>Packages:</h3>
         <% @instructor.instructor_packages.each do |i_package| %>
-        <p><%= i_package.package.title %>: <%= i_package.price %></p>
+          <p><%= i_package.package.title %>: <%= i_package.price %></p>
         <% end %>
+        <%= link_to "update packages", instructor_packages_path %>
       </div>
     </div>
   </div>
 </div>
-<% if policy(Booking).create? %>
+
 <div class="container">
   <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
     <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
     <%= render "bookings/booking_form" %>
   </div>
 </div>
-<% end %>
 
 <h2>Reviews</h2>
 <% @instructor.reviews.each do |review| %>
@@ -57,5 +56,4 @@
 </div>
 <% end %>
 </div>
-
 
