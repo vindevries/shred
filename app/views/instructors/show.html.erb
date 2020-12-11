@@ -1,10 +1,11 @@
 <div class = "container py-5">
   <% if policy(@instructor).update? %>
-  <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+    <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+    <% end %>
+    <% if current_user != @instructor.user %>
+    <%= link_to "back", instructors_path %>
   <% end %>
-  <% if current_user != @instructor.user %>
-  <%= link_to "back", instructors_path %>
-  <% end %>
+  
   <div class="row">
     <div class="col-xs-12 col-md-6">
       <div class="show-card-image">
@@ -62,8 +63,3 @@
   <p>Rating: <%= review.rating %></p>
 </div>
 <% end %>
-
-
-
-
-

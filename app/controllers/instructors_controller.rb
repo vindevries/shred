@@ -6,6 +6,22 @@ class InstructorsController < ApplicationController
   def index
     skip_policy_scope
     @instructors = Instructor.all
+
+
+
+    if params[:search].present?
+     
+      @instructors = @instructors.joins(:locations).where(locations: { name: params[:search][:location] }).distinct if params[:search][:location].present?
+      @instructors = @instructors.joins(:languages).where(languages: { name: params[:search][:language] }).distinct if params[:search][:language].present?
+      @instructors = @instructors.joins(:packages).where("packages.title ILIKE ?", "%#{params[:search][:package]}%").distinct if params[:search][:package].present?
+      @instructors = @instructors.where("gender ILIKE ?", "%#{params[:search][:gender]}%") if params[:search][:gender].present?
+      # @instructors = @instructors.where(size: params[:search][:size]) if params[:search][:size].present?
+    
+      # @instructors = @instructors.joins(:tags).where(tags: { name: params[:search][:tag] }).distinct if params[:search][:tag].present?
+
+
+    end
+
   end
 
   def show
