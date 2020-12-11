@@ -5,7 +5,7 @@
     <% if current_user != @instructor.user %>
     <%= link_to "back", instructors_path %>
   <% end %>
-  
+
   <div class="row">
     <div class="col-xs-12 col-md-6">
       <div class="show-card-image">
@@ -45,8 +45,6 @@
 </div>
 <% end %>
 
-
-
 <h2>Reviews</h2>
 <% @instructor.reviews.each do |review| %>
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -61,12 +59,3 @@
 </div>
 
 
-
-
-<% @instructor.reviews.each do |review| %>
-<div class="card text-dark">
-  <p><%= review.title %></p>
-  <p><%= review.description %></p>
-  <p>Rating: <%= review.rating %></p>
-</div>
-<% end %>
