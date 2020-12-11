@@ -9,7 +9,7 @@
       <%= link_to "EDIT", edit_booking_path(booking), class: "btn btn-danger mr-3" %>
     <% end %>
     <div class="card-buttons">
-      <% if policy(Review.new(booking: booking)).create? %>
+      <% if policy(Review.new(booking: booking)).create? && booking.status == "accepted" %>
         <%= link_to "Had the session already? Leave a review!", new_booking_review_path(booking), class: "btn btn-primary mr-2" %>
       <% end %>
     </div>
