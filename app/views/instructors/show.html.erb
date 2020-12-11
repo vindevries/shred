@@ -5,7 +5,9 @@
     <% if current_user != @instructor.user %>
     <%= link_to "back", instructors_path %>
   <% end %>
-
+  
+  <p></p>
+  
   <div class="row">
     <div class="col-xs-12 col-md-6">
       <div class="show-card-image">
@@ -35,15 +37,26 @@
       </div>
     </div>
   </div>
-</div>
+    <% if policy(Booking).create? %>
+    <div class="container">
+      <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
+        <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+        <%= render "bookings/booking_form" %>
+      </div>
+    <% end %>
 
-<div class="container">
-  <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
-    <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
-    <%= render "bookings/booking_form" %>
+  <h2>Reviews</h2>
+  <% @instructor.reviews.each do |review| %>
+  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card-header">Review from <%= review.user.first_name %></div>
+    <div class="card-body">
+      <h5 class="card-title"><%= review.title %></h5>
+      <p class="card-text"><%= review.description %></p>
+      <p class="card-text"><%= review.rating %></p>
+    </div>
   </div>
-</div>
-
+  <% end %>
+  </div>
 <h2>Reviews</h2>
 <% @instructor.reviews.each do |review| %>
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -56,9 +69,9 @@
     <%  review.rating.times do %>
        <i class="colornice fas fa-star"></i> 
     <% end %>
-
   </div>
 </div>
-<% end %>
-</div>
+
+
+
 
