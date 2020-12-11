@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class = "container py-5">
   <h2>Leave a review for <%= @booking.instructor.user.first_name %></h2>
   <%= simple_form_for [@booking, @review] do |f| %>
@@ -8,3 +9,22 @@
     <%= f.submit "Leave a review", class: "btn btn-primary" %>
   <% end %>
 <div>
+=======
+
+ <h2>Leave a review for <%= @booking.instructor.user.first_name %></h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+   
+      <%= simple_form_for [@booking, @review] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.input :rating, :collection => [1, 2, 3, 4, 5]%>
+
+      <%= f.submit "Leave a review", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+>>>>>>> master

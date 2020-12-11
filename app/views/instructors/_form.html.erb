@@ -3,11 +3,19 @@
     <%= f.input :gender, :collection => ["male", "female", "non-binary"] %>
     <%= f.input :description, label: "Tell your students about you and your services" %>
     <%= f.input :phone, label: "Your Whatsapp phone number" %>
+    <% @instructor.instructor_languages.each do |language| %>
+      <% if policy(language).destroy? %>
+        <div><%= language.language.name %> <%= link_to "X", language, method: :delete %></div>
+      <% end %>
+    <% end %>
     <%= f.simple_fields_for :language do |z| %>
-      <%= f.input :languages, collection: Language.all, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
+      <%= f.input :languages, collection: @available_languages, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
+    <% end %>
+    <% @instructor.instructor_locations.each do |location| %>
+      <div><%= location.location.name %> <%= link_to "X", location, method: :delete %></div>
     <% end %>
     <%= f.simple_fields_for :location do |z| %>
-      <%= f.input :locations, collection: Location.all, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
+      <%= f.input :locations, collection: @available_locations, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
     <% end %>
     <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Upload a profile picture" %>
     <%= f.submit "Continue", class: "btn btn-primary" %>

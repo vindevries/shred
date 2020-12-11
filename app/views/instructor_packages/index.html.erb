@@ -1,28 +1,31 @@
-<div class = "container py-5">
-  <div class="container">
-    <div class="row">
-      <% @packages.each do |package| %>
-        <div class="col-md-4">
-          <div class="package-card">
-              <h2><%= package.title %></h2>
-              <% if package.duration %>
-                <h2><%= package.duration %> hours</h2>
-              <% end %>
-              <% if package.rental %>
+<div class="container">
+  <div class="row">
+    <% @packages.each do |package| %>
+      <div class="col-md-4">
+        <div class="package-card" id="package-<%= package.id%>">
+            <h2><%= package.title %></h2>
+            <% if package.duration %>
+              <h2><%= package.duration %> hours</h2>
+            <% end %>
+            <% if package.rental %>
               <h2>+ Rental</h2>
+            <% end %>
+            <% if package.photographer %>
+              <h2><i class="fas fa-camera-retro"></i></h2>
+            <% end %>
+            <% your_package = @instructor.has_package?(package) %>
+            <% if !your_package && policy(InstructorPackage).create? %>
+              <%= simple_form_for @instructor_package, remote: true do |f| %>
+                <%= f.input :package_id, input_html: {value: package.id}, as: :hidden %>
+                <%= f.input :price %>
+                <%= f.submit %>
               <% end %>
-              <% if package.photographer %>
-                <h2><i class="fas fa-camera-retro"></i></h2>
+            <% else %>
+              <% if policy(your_package).destroy? %>
+                <%= link_to "Change Price", instructor_package_path(your_package), method: :delete, remote: true  %>
               <% end %>
-              <% if !@instructor.has_package?(package) && policy(InstructorPackage).create? %>
-                <%= simple_form_for @instructor_package, remote: true do |f| %>
-                  <%= f.input :package_id, input_html: {value: package.id}, as: :hidden %>
-                  <%= f.input :price %>
-                  <%= f.submit %>
-                <% end %>
-              <% end %>
-              <hr>
-          </div>
+            <% end %>
+            <hr>
         </div>
       <% end %>
     </div>
