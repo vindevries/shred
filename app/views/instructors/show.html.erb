@@ -1,4 +1,10 @@
 <div class = "container py-5">
+  <% if policy(@instructor).update? %>
+    <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+  <% end %>
+  <% if current_user != @instructor.user %>
+    <%= link_to "back", instructors_path %>
+  <% end %>
   <div class="row">
     <div class="col-xs-12 col-md-6">
     <div class="show-card-image">
@@ -12,7 +18,6 @@
     <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
     <p>Last name: <%= @instructor.user.last_name %></p>
     <p><%= @instructor.description %></p>
-    <p>Sex: <%= @instructor.gender %></p>
     <h3>Locations:</h3>
     <% @instructor.locations.each do |location| %>
       <p><%= location.name %></p>
@@ -30,16 +35,13 @@
   </div>
 </div>
 
-<% if current_user =! @instructor.user %>
-<div class="container">
+<% if policy(Booking).create? %>
+  <div class="container">
   <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
-  <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
-  <%= simple_form_for (@booking) do |f| %>
-    <%= f.input :description, as: :string %>
-    <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
-    <%= f.submit "Complete Booking", class: "btn btn-primary" %>
-  <% end %>
+    <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+    <%= render "bookings/booking_form" %>
   </div>
+
 </div>
 
 <% end %>
@@ -57,6 +59,17 @@
   </div>
 </div>
  <% end %>
+
+  </div>
+<% end %>
+
+  <% @instructor.reviews.each do |review| %>
+    <div class="card text-dark">
+      <p><%= review.title %></p>
+      <p><%= review.description %></p>
+      <p>Rating: <%= review.rating %></p>
+    </div>
+  <% end %>
 
 
 

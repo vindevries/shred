@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: %i[accept reject]
+  before_action :set_booking, only: %i[accept reject edit update]
   def new
     @booking = Booking.new
     # authorize @booking
@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @instructor_package = InstructorPackage.find(params[:booking][:instructor_package_id])
     @booking.instructor_package = @instructor_package
-    # authorize @booking
+    authorize @booking
 
     if @booking.save
       redirect_to dashboard_path
@@ -21,15 +21,29 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+    authorize @booking
+    @instructor = @booking.instructor
+  end
+
+  def update
+    authorize @booking
+    if @booking.update(booking_params)
+      redirect_to dashboard_path
+    else
+      render :new
+    end
+  end
+
   def accept
-    # authorize @booking
+    authorize @booking
     @booking.status = "accepted"
     @booking.save
     redirect_to dashboard_path
   end
 
   def reject
-    # authorize @booking
+    authorize @booking
     @booking.status = "rejected"
     @booking.save
     redirect_to dashboard_path
@@ -42,6 +56,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:description, :status)
+    params.require(:booking).permit(:description, :instructor_package_id)
   end
 end

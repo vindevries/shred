@@ -1,0 +1,41 @@
+.button {
+  background-color: $white;
+  border: 1px solid $jade;
+  border-radius: 12px;
+  color: $jade;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-style: $headers-font;
+  font-size: 16px;
+  font-weight: none;
+  margin: 6px 0px;
+}
+  
+.button-secondary {
+  background-color: $jade;
+  color: $black;
+  font-weight: none;
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+.button-third {
+  color: $jade;
+  border: 1px solid $jade;
+  padding: 8px;
+}
+
+.button-landing-card {
+  background-color: $jade;
+  color: black;
+  border: none;
+  box-shadow: 1px 1px 2px #898989;
+  margin: auto;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  width: 100%;
+}
