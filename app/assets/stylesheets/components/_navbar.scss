@@ -22,3 +22,11 @@
     }
   }
 }
+
+@media only screen and (min-width: 500px) {
+  .navbar {
+    .nav-item.hidden-md {
+      display: none;
+    }
+  }
+}
