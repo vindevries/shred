@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <p class="shadow card-header box-shadow my-3 border-radius"><%= @instructor.description %></p>
+        <p class="card-header box-shadow my-3 border-radius"><%= @instructor.description %></p>
         <%= link_to "update packages", instructor_packages_path %>
       </div>
     </div>
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <div class="row w-100 mt-4 justify-content-around">
+  <div class="row w-100 mt-4 justify-content-around show-review-div">
 
     <% if @instructor.reviews.empty? %>
     <h5>No reviews yet</h5>
