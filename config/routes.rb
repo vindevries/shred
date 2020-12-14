@@ -13,12 +13,14 @@ Rails.application.routes.draw do
     member do
       post :accept
       post :reject
+      get :confirm_payment
     end
   end
   resources :instructor_languages, only: [:new, :create]
   resources :instructor_locations, only: [:new, :create]
   resources :bookings, only: [] do
     resources :reviews,only: [:new, :create]
+    resources :payments, only: :new
   end
 
   get "/dashboard", to: "dashboards#dashboard", as: :dashboard
