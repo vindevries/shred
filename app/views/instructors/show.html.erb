@@ -86,7 +86,7 @@
     </div>  
 
     <div class="col-xs-12 col-md-4 booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-      <% if policy(Booking).create? %>
+      <% if policy(Booking).new? %>
       <div class="container">
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
