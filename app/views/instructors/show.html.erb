@@ -1,8 +1,6 @@
 <div class = "py-5 px-5">
 
 
-
-
   <div class="row w-100 justify-content-around">
     
     <div class="col-xs-12 col-md-7 shadow show-description-div">
@@ -69,16 +67,19 @@
   <div class="row w-100 mt-4 justify-content-around">
 
 
-    <div class="col-xs-12 col-md-7 p-3 shadow show-review">
+    <div class="col-xs-12 col-md-7 p-3 show-review">
 
    <% if @instructor.reviews.empty? %> 
       <h5>This instructor has no revies yet</h5>
+
+    
+
    <% else %>
     <div class="col-xs-12 col-md-7 show-review helper-black">
 
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
         <div class="card-header">Review from <%= review.user.first_name %></div>
         <div class="card-body">
           <h5 class="card-title"><%= review.title %></h5>
@@ -88,9 +89,9 @@
             <i class="colornice fas fa-star"></i>
           <% end %>
         </div>
-      </div>
+        </div>
       <% end %>
-      <% end %>
+    <% end %>
         </div>
 
     </div>  
