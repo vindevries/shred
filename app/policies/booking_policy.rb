@@ -5,13 +5,12 @@ class BookingPolicy < ApplicationPolicy
     end
   end
 
-<<<<<<< HEAD
   def new?
-    true
-=======
+   true
+  end
+
   def create?
    user && !user.instructor
->>>>>>> master
   end
 
   def create?

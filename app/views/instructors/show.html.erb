@@ -91,28 +91,19 @@
       <% end %>
 
     </div>
-
->>>>>>> master
     <div class="col-xs-12 col-md-4 helper-black booking-form-wrapper text-dark shadow p-3 m-3 bg-white rounded ">
-      <% if policy(Booking).create? %>
+      <% if policy(Booking).new? %>
       <div class="container" >
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
       </div>
-<<<<<<< HEAD
-      <% end %>
-    </div>
-  </div>
-  </div>
-</div>
-
-=======
        <% else %>
         <div class="container" >
         <h2 class="text-center">Log-in as a student if you want to book this instructor</h2>
         </div>
     <% end %>
->>>>>>> master
+
+
 
 
 
