@@ -6,6 +6,12 @@ class Booking < ApplicationRecord
   validates :description, presence: true
 
   before_create :set_status, :set_price
+  after_create :send_message
+
+  def send_message
+    Messages::CLIENT.message_create('MessageBird', "#{self.instructor.phone}", 'This is a test message', :reference => 'Foobar')
+    puts "Message sent"
+  end
 
   def set_status
     self.status = "pending"
