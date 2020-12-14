@@ -16,10 +16,23 @@ class BookingsController < ApplicationController
     authorize @booking
 
     if @booking.save
-      redirect_to dashboard_path
+      create_stripe_checkout
+      # intent = Stripe::PaymentIntent.create({
+      #   amount: @booking.price * 10000,
+      #   currency: 'idr',
+      #   payment_method_types: ['card'],
+      #   capture_method: 'manual',
+      # })
+      # byebug
+      # @booking.update(payment_intent_id: intent.id)
+      redirect_to confirm_payment_booking_path(@booking)
     else
       render "instructors/show"
     end
+  end
+
+  def confirm_payment
+    authorize @booking
   end
 
   def edit
@@ -63,17 +76,13 @@ class BookingsController < ApplicationController
   end
 
   def create_stripe_checkout
-    session = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        line_items: [{
-          name: @booking.package.title,
-          amount: @booking.price,
-          currency: 'usd',
-          quantity: 1
-        }],
-        success_url: root_url,
-        cancel_url: root_url
-      )
-      @booking.update(checkout_session_id: session.id)
+    intent = Stripe::PaymentIntent.create({
+      amount: 1099,
+      currency: 'usd',
+      payment_method_types: ['card'],
+      capture_method: 'manual',
+    })
+    byebug
+    @booking.update(checkout_session_id: session.id)
   end
 end

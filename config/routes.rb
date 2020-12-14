@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     member do
       post :accept
       post :reject
-      patch :confirm_payment
+      get :confirm_payment
     end
   end
   resources :instructor_languages, only: [:new, :create]

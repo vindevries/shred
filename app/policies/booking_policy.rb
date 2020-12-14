@@ -9,6 +9,14 @@ class BookingPolicy < ApplicationPolicy
    true
   end
 
+  def pay?
+    raise
+  end
+
+  def confirm_booking?
+    record.status == "pending"
+  end
+
   def create?
    user && !user.instructor
   end
