@@ -1,12 +1,12 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand brand w-25" do %>
+  <%= link_to root_path, class: "navbar-brand brand" do %>
     <%= image_tag "logo.png" %>
     <% end %>
       <h1 class="shred-header">S H R E D</h1>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="w-25 collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item active">
@@ -15,6 +15,13 @@
               <%= link_to "Become an instructor", new_instructor_path, class: "nav-link" %>
             <% end %>
           <% end %>
+        </li>
+        <li class="nav-item hidden-md">
+          <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
+          <% if current_user.instructor %>
+          <%= link_to "View my profile", instructor_path(current_user.instructor), class: "dropdown-item" %>
+          <% end %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
