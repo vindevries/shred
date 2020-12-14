@@ -11,7 +11,7 @@ class Instructor < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many_attached :photos
   validates :description, presence: true
-
+  validates :phone, format: { with: /\A\+(?:[0-9]●?){6,14}[0-9]\z/ }
   def average_rating
     if !reviews.empty?
       reviews.pluck(:rating).sum / reviews.size
