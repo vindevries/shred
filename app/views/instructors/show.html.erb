@@ -45,18 +45,7 @@
       </div>
     <% end %>
 
-  <h2>Reviews</h2>
-  <% @instructor.reviews.each do |review| %>
-  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">Review from <%= review.user.first_name %></div>
-    <div class="card-body">
-      <h5 class="card-title"><%= review.title %></h5>
-      <p class="card-text"><%= review.description %></p>
-      <p class="card-text"><%= review.rating %></p>
-    </div>
-  </div>
-  <% end %>
-  </div>
+
 <h2>Reviews</h2>
 <% @instructor.reviews.each do |review| %>
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -71,6 +60,7 @@
     <% end %>
   </div>
 </div>
+<% end %>
 
 
 
