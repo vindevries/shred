@@ -13,6 +13,10 @@ class BookingPolicy < ApplicationPolicy
    user && !user.instructor
   end
 
+  def create?
+    user && !user.instructor
+  end
+
   def update?
     user && record.user
   end

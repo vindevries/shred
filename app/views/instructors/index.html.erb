@@ -74,15 +74,23 @@
               </div>
               <div class="card-text-div">
                 <p class="card-text"><%= instructor.description %></p>
+                
               </div>
               <div class="card-review-div">
-                <p>Ask Leah/Amalia how to put review average</p>
+                <p class="card-text">avarage rating: <%= instructor.average_rating %></p>
               </div>
             </div>
             <div class="col-md-3">
               <div class="card-category-div">
-                <p>Ask Leah/Amalia how to display category and price</p>
+
+              <div>  
+                <% instructor.instructor_packages.each do |i_package| %>
+                <p><%= i_package.package.title %>: <%= i_package.price %></p>
+                
+                <% end %>
               </div>
+
+
               <div class="mb-1 w-80">
                 <p class="button button-secondary card-view-button"><strong>View</strong></p>
               </div>
