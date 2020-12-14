@@ -9,12 +9,12 @@
 
 
   <div class="row w-100 helper-green justify-content-center">
-    
+
     <div class="col-xs-12 col-md-7 helper-black show-description-div">
-      
+
       <div class="p-4">
         <h2><%= @instructor.user.first_name.capitalize %></h2>
-                
+
         <div class="row col-12">
 
           <div class="column col-3 p-0 helper-black">
@@ -39,7 +39,7 @@
           </div>
 
           <div class="row col-12">
-            <div class="column col-3 p-0 helper-black">  
+            <div class="column col-3 p-0 helper-black">
               <% @instructor.instructor_packages.each do |i_package| %>
               <p><%= i_package.package.title %>:</p>
               <% end %>
@@ -57,7 +57,7 @@
         <%= link_to "update packages", instructor_packages_path %>
 
       </div>
-    
+
     </div>
 
     <div class="col-xs-12 col-md-4 helper-black show-image-div m-3">
@@ -67,12 +67,8 @@
         <% end %>
       </div>
     </div>
-
   </div>
-
-
   <div class="row helper-green">
-
     <div class="col-xs-12 col-md-7 show-review helper-black">
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
@@ -88,8 +84,7 @@
         </div>
       </div>
       <% end %>
-    </div>  
-
+    </div>
     <div class="col-xs-12 col-md-4 helper-black booking-form-wrapper text-dark shadow p-3 m-3 bg-white rounded ">
       <% if policy(Booking).create? %>
       <div class="container" >
@@ -98,14 +93,10 @@
       </div>
       <% end %>
     </div>
-
   </div>
-  
   </div>
-
-
 </div>
-  
+
 
 
 
