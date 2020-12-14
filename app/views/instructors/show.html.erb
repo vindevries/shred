@@ -1,8 +1,5 @@
 <div class = "py-5 px-5">
 
-
-
-
   <div class="row w-100 justify-content-around">
     
     <div class="col-xs-12 col-md-7 shadow show-description-div">
@@ -65,17 +62,9 @@
 
   </div>
 
-
   <div class="row w-100 mt-4 justify-content-around">
 
-
     <div class="col-xs-12 col-md-7 p-3 shadow show-review">
-
-   <% if @instructor.reviews.empty? %> 
-      <h5>This instructor has no revies yet</h5>
-   <% else %>
-    <div class="col-xs-12 col-md-7 show-review helper-black">
-
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
       <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -90,15 +79,11 @@
         </div>
       </div>
       <% end %>
-      <% end %>
-        </div>
-
     </div>  
 
-
     <div class="col-xs-12 col-md-4 booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-   <% if policy(Booking).new? %>
-      <div class="container" >
+      <% if policy(Booking).create? %>
+      <div class="container">
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
       </div>
@@ -108,20 +93,16 @@
   </div>
   
   <div class="m-3 p-3 button"> 
-  <% if policy(@instructor).update? %>
-    <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+    <% if policy(@instructor).update? %>
+      <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+      <% end %>
+      <% if current_user != @instructor.user %>
+      <%= link_to "back", instructors_path %>
     <% end %>
-    <% if current_user != @instructor.user %>
-    <%= link_to "back", instructors_path %>
-  <% end %>
   </div>
 
-  </div>
-
-   
 </div>
   
-
 
 
 
