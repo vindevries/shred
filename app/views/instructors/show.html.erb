@@ -1,10 +1,10 @@
 <div class = "py-5 px-5">
 
   <div class="row w-100 justify-content-around">
-    <div class="col-xs-12 col-md-7 shadow show-description-div">
+    <div class="col-xs-12 col-md-7 shadow show-description-div show-review">
       <div class="p-4">
         <h2><%= @instructor.user.first_name.capitalize %></h2>
-        <div class="row col-12 card-header box-shadow my-3 border-radius">
+        <div class="bg-grey row col-12 card-header box-shadow my-3 border-radius background-color-grey">
           <div class="column col-3 p-0">
             <p>Location:</p>
             <p>Languages:</p>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <p class="card-header box-shadow my-3 border-radius"><%= @instructor.description %></p>
+        <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
         <%= link_to "update packages", instructor_packages_path %>
       </div>
     </div>
@@ -57,7 +57,7 @@
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
       
-        <div class="card-header box-shadow my-3 border-radius">
+        <div class="card-header box-shadow my-3 border-radius background-color-grey">
             
             <div class="row justify-content-start">
 
@@ -108,7 +108,6 @@
   
   
   <div>
-    
     <div class="m-3 p-3 button"> 
       <% if policy(@instructor).update? %>
         <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
@@ -117,7 +116,6 @@
         <%= link_to "back", instructors_path %>
       <% end %>
     </div>
-  
   </div>
   
 </div>
