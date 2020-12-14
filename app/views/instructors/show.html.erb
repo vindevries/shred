@@ -69,6 +69,9 @@
     </div>
   </div>
   <div class="row helper-green">
+   <% if @instructor.reviews.empty? %>
+      <h5>This instructor has no revies yet</h5>
+   <% else %>
     <div class="col-xs-12 col-md-7 show-review helper-black">
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
@@ -85,18 +88,31 @@
       </div>
       <% end %>
     </div>
+      <% end %>
+
+    </div>
+
+>>>>>>> master
     <div class="col-xs-12 col-md-4 helper-black booking-form-wrapper text-dark shadow p-3 m-3 bg-white rounded ">
       <% if policy(Booking).create? %>
       <div class="container" >
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
       </div>
+<<<<<<< HEAD
       <% end %>
     </div>
   </div>
   </div>
 </div>
 
+=======
+       <% else %>
+        <div class="container" >
+        <h2 class="text-center">Log-in as a student if you want to book this instructor</h2>
+        </div>
+    <% end %>
+>>>>>>> master
 
 
 
