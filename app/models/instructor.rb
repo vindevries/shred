@@ -12,6 +12,14 @@ class Instructor < ApplicationRecord
   has_many_attached :photos
   validates :description, presence: true
 
+  def average_rating
+    if !reviews.empty?
+      reviews.pluck(:rating).sum / reviews.size
+    else
+      "No reviews yet"
+    end
+  end
+
   def has_package?(package)
     InstructorPackage.find_by(instructor: self, package: package)
   end
