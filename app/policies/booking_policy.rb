@@ -13,10 +13,6 @@ class BookingPolicy < ApplicationPolicy
    user && !user.instructor
   end
 
-  def create?
-    user && !user.instructor
-  end
-
   def update?
     user && record.user
   end
@@ -27,5 +23,9 @@ class BookingPolicy < ApplicationPolicy
 
   def reject?
     user && record.instructor
+  end
+
+  def confirm_payment?
+    user && record.user && record.payment == "pending"
   end
 end
