@@ -68,7 +68,14 @@
 
   <div class="row w-100 mt-4 justify-content-around">
 
+
     <div class="col-xs-12 col-md-7 p-3 shadow show-review">
+
+   <% if @instructor.reviews.empty? %> 
+      <h5>This instructor has no revies yet</h5>
+   <% else %>
+    <div class="col-xs-12 col-md-7 show-review helper-black">
+
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
       <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -83,11 +90,16 @@
         </div>
       </div>
       <% end %>
+
+      <% end %>
+        </div>
+
     </div>  
 
+
     <div class="col-xs-12 col-md-4 booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-      <% if policy(Booking).new? %>
-      <div class="container">
+   <% if policy(Booking).new? %>
+      <div class="container" >
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
       </div>
@@ -110,6 +122,7 @@
    
 </div>
   
+
 
 
 

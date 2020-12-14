@@ -69,7 +69,6 @@
               <%= cl_image_tag instructor.photos.first.key, class: "instructor-image" %>
             </div>
             <div class="col-md-5 column h-100 card-center-div">
-              
               <div class="card-title-div">
                 <h3><%= link_to instructor.user.first_name.capitalize, instructor_path(instructor)  %></h3>
               </div>
@@ -79,7 +78,6 @@
               <div class="card-review-div">
                 <p>Ask Leah/Amalia how to put review average</p>
               </div>
-           
             </div>
             <div class="col-md-3">
               <div class="card-category-div">
@@ -96,4 +94,4 @@
       <% end %>
     </div>
   </div>
-</div>
+
