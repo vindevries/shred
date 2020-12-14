@@ -6,8 +6,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.instructor
- 
+   user && !user.instructor
   end
 
   def update?
