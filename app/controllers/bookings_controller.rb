@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: %i[accept reject edit update]
+  before_action :set_booking, only: %i[accept reject edit update confirm_payment]
   def new
     @booking = Booking.new
     # authorize @booking
@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
 
   # /costumes/:costume_id/bookings
   def create
-    
+
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @instructor_package = InstructorPackage.find(params[:booking][:instructor_package_id])
@@ -16,10 +16,23 @@ class BookingsController < ApplicationController
     authorize @booking
 
     if @booking.save
-      redirect_to dashboard_path
+      create_stripe_checkout
+      # intent = Stripe::PaymentIntent.create({
+      #   amount: @booking.price * 10000,
+      #   currency: 'idr',
+      #   payment_method_types: ['card'],
+      #   capture_method: 'manual',
+      # })
+      # byebug
+      # @booking.update(payment_intent_id: intent.id)
+      redirect_to confirm_payment_booking_path(@booking)
     else
       render "instructors/show"
     end
+  end
+
+  def confirm_payment
+    authorize @booking
   end
 
   def edit
@@ -41,6 +54,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = "accepted"
     @booking.save
+    create_stripe_checkout
     redirect_to dashboard_path
   end
 
@@ -59,5 +73,15 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:description, :instructor_package_id)
+  end
+
+  def create_stripe_checkout
+    intent = Stripe::PaymentIntent.create({
+      amount: 1099,
+      currency: 'usd',
+      payment_method_types: ['card'],
+      capture_method: 'manual',
+    })
+    @booking.update(checkout_session_id: session.id)
   end
 end
