@@ -1,19 +1,70 @@
-.costume-card {
-    height: 250px;
-    border-radius: 16px;
-    border: none;
-    box-shadow: 1px 1px 2px #898989;
-    color: $gray;
-    .row{
-      overflow: hidden;
-  
-    }
-    img {
-      object-fit: contain;
-      width: 100%;
-      // object-fit: cover;
-    }
-    p {
-      opacity: 0.7;
-    }
+.instructor-card-page {
+  display: flex;
+  justify-content: center;
+}
+
+.instructor-card-div {
+  height: 250px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0px 0px 2px #898989;
+  color: $gray;
+  .row {
+    overflow: hidden;
   }
+  padding: 0px;
+  margin: 0px 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.instructor-image {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: flex; /* remove extra space below image */
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+}
+
+.instructor-image-div {
+  height:250px;
+  border-radius: 16px;
+}
+
+.card-center-div {
+  border-right:1px solid $jade;
+  border-left:1px solid $jade;
+}
+.card-title-div {
+  height: 50px;
+}
+
+.card-text-div {
+  height: 150px;
+}
+
+.card-review-div {
+  height: 50px;
+}
+
+.card-category-div {
+  height: 200px;
+}
+
+.card-view-div {
+  height: 50px;
+}
+
+.card-view-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+
+.helper {
+  border:1px solid black;
+}

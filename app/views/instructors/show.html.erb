@@ -1,45 +1,98 @@
-<div class = "container py-5">
+<div class = "py-5 px-5 helper-red">
+
   <% if policy(@instructor).update? %>
     <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
     <% end %>
     <% if current_user != @instructor.user %>
     <%= link_to "back", instructors_path %>
   <% end %>
-  
-  <p></p>
-  
-  <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <div class="show-card-image">
-        <% @instructor.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-6">
-      <div class="show-card-text pl-4">
-        <h2>First name: <%= @instructor.user.first_name.capitalize %></h2>
-        <p>Last name: <%= @instructor.user.last_name %></p>
+
+
+  <div class="row w-100 helper-green justify-content-center">
+    
+    <div class="col-xs-12 col-md-7 helper-black show-description-div">
+      
+      <div class="p-4">
+        <h2><%= @instructor.user.first_name.capitalize %></h2>
+                
+        <div class="row col-12">
+
+          <div class="column col-3 p-0 helper-black">
+            <p>Location:</p>
+            <p>Languages:</p>
+          </div>
+
+          <div class="column col-9 p-0 helper-red">
+            <% @instructor.locations.each do |location| %>
+              <p><%= location.name %></p>
+            <% end %>
+            <p>
+            <% @instructor.languages.each do |language| %>
+              <%= language.name %>
+            <% end %>
+            </p>
+
+          </div>
+
+          <div class="row col-12 p-0 ml-1 helper-green">
+            <p><strong>Packages:</strong></p>
+          </div>
+
+          <div class="row col-12">
+            <div class="column col-3 p-0 helper-black">  
+              <% @instructor.instructor_packages.each do |i_package| %>
+              <p><%= i_package.package.title %>:</p>
+              <% end %>
+            </div>
+
+            <div class="column col-9 p-0 helper-red">
+              <% @instructor.instructor_packages.each do |i_package| %>
+                  <p><%= i_package.price %></p>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
         <p><%= @instructor.description %></p>
-        <h3>Locations:</h3>
-        <% @instructor.locations.each do |location| %>
-          <p><%= location.name %></p>
-        <% end %>
-        <h3>Languages:</h3>
-          <% @instructor.languages.each do |language| %>
-          <p><%= language.name %></p>
-        <% end %>
-        <h3>Packages:</h3>
-        <% @instructor.instructor_packages.each do |i_package| %>
-          <p><%= i_package.package.title %>: <%= i_package.price %></p>
-        <% end %>
         <%= link_to "update packages", instructor_packages_path %>
+
+      </div>
+    
+    </div>
+
+    <div class="col-xs-12 col-md-4 helper-black show-image-div m-3">
+        <div class="show-image">
+        <% @instructor.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
       </div>
     </div>
+
   </div>
-    <% if policy(Booking).create? %>
-    <div class="container">
-      <div class="booking-form-wrapper text-dark shadow p-3 mb-5 mt-3 bg-white rounded" >
+
+
+  <div class="row helper-green">
+
+    <div class="col-xs-12 col-md-7 show-review helper-black">
+      <h2>Reviews</h2>
+      <% @instructor.reviews.each do |review| %>
+      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Review from <%= review.user.first_name %></div>
+        <div class="card-body">
+          <h5 class="card-title"><%= review.title %></h5>
+          <p class="card-text"><%= review.description %></p>
+          <p class="card-text"><%= review.rating %></p>
+          <%  review.rating.times do %>
+            <i class="colornice fas fa-star"></i>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>  
+
+    <div class="col-xs-12 col-md-4 helper-black booking-form-wrapper text-dark shadow p-3 m-3 bg-white rounded ">
+      <% if policy(Booking).create? %>
+      <div class="container" >
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
       </div>
@@ -59,6 +112,8 @@
        <i class="colornice fas fa-star"></i> 
     <% end %>
   </div>
+
+
 </div>
 <% end %>
 
