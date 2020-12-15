@@ -75,9 +75,17 @@
                 <p class="card-text"><%= instructor.description %></p>
 
               </div>
-              <div class="card-review-div">
-                <p class="card-text">avarage rating: <%= instructor.average_rating %></p>
+              <div class="row card-review-div">
+                <div class="col-md-3">
+                  <p class="card-text">Rated: <%= instructor.average_rating %></p>
+                </div>
+                <div class="col-md-9 column">
+                  <% instructor.average_rating.times do %>
+                  <i class="colornice fas fa-star"></i>
+                  <% end %>
+                </div>
               </div>
+
             </div>
             <div class="col-md-3">
               <div class="card-category-div">
