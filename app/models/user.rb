@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :instructor, dependent: :destroy
+  after_create :create_stripe_user
   has_many :bookings
   has_many :reviews, dependent: :destroy
   validates :first_name, presence: true

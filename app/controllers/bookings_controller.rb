@@ -61,6 +61,7 @@ class BookingsController < ApplicationController
     create_stripe_checkout
     @booking.status = "accepted"
     @booking.save
+    BookingMailer.with(booking: @booking).mail_to_user.deliver_now
     redirect_to dashboard_path
   end
 
@@ -88,7 +89,7 @@ class BookingsController < ApplicationController
     )
 
     Stripe::Charge.create({
-                            amount: (@booking.instructor_package.price * 100 * 0.15).to_i,
+                            amount: (@booking.instructor_package.price * 1000 * 0.15).to_i,
                             currency: 'usd',
                             source: 'tok_visa',
                             description: "#{@booking.instructor.user.first_name} #{@booking.instructor.user.last_name}"

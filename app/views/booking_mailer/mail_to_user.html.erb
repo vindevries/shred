@@ -1,0 +1,10 @@
+<p>Hi <%= @booking.user.first_name %>,</p>
+<h2>Congradulations!!! Your booking was accepted!</h2>
+<h3> <%= @booking.instructor.user.first_name %> will contact you shortly </h3>
+<h4>Contact details of the instructor</h4>
+<p> Phone number: <%= @booking.instructor.phone %> </p>
+<p> Email: <%= @booking.instructor.user.email %> </p> 
+
+
+
+<p>See ya!</p>
