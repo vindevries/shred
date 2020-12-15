@@ -1,10 +1,10 @@
 <div class = "py-5 px-5">
 
   <div class="row w-100 justify-content-around">
-    <div class="col-xs-12 col-md-7 shadow show-description-div">
+    <div class="col-xs-12 col-md-7 shadow show-description-div show-review">
       <div class="p-4">
         <h2><%= @instructor.user.first_name.capitalize %></h2>
-        <div class="row col-12">
+        <div class="bg-grey row col-12 card-header box-shadow my-3 border-radius background-color-grey">
           <div class="column col-3 p-0">
             <p>Location:</p>
             <p>Languages:</p>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <p class="shadow p-1"><%= @instructor.description %></p>
+        <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
         <%= link_to "update packages", instructor_packages_path %>
       </div>
     </div>
@@ -47,54 +47,78 @@
       </div>
     </div>
   </div>
-  <div class="row w-100 mt-4 justify-content-around">
 
-    <div class="col-xs-12 col-md-7 p-3 shadow show-review">
-   <% if @instructor.reviews.empty? %>
+  <div class="row w-100 mt-4 justify-content-around show-review-div">
 
-      <h5>This instructor has no revies yet</h5>
-
-
-
-   <% else %>
-    <div class="col-xs-12 col-md-7 show-review helper-black">
+    <% if @instructor.reviews.empty? %>
+    <h5>No reviews yet</h5>
+    <% else %>
+    <div class="col-xs-12 col-md-7 show-review shadow p-3">
       <h2>Reviews</h2>
       <% @instructor.reviews.each do |review| %>
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Review from <%= review.user.first_name %></div>
-        <div class="card-body">
-          <h5 class="card-title"><%= review.title %></h5>
-          <p class="card-text"><%= review.description %></p>
-          <p class="card-text"><%= review.rating %></p>
-          <%  review.rating.times do %>
-            <i class="colornice fas fa-star"></i>
-          <% end %>
+      
+        <div class="card-header box-shadow my-3 border-radius background-color-grey">
+            
+            <div class="row justify-content-start">
+
+              <div class="mt-1 ml-1">
+                <h5 class="card-title mt-1">Rated:<h5>
+              </div>
+
+              <div>
+                <p class="btn button-secondary mx-2"><%= review.rating %></p>
+              </div>
+
+              <div class="mt-2">
+                <%  review.rating.times do %>
+                <i class="colornice fas fa-star"></i>
+                <% end %>
+              </div>
+
+
+
+            </div>
+
+
+
+          <div class="card-body">
+            <h5 class="card-title"><%= review.title %></h5>
+            <p class="card-text"><%= review.description %></p>
+        
+          </div>
+          Review from <%= review.user.first_name %>
         </div>
+
+        <% end %>
+        <% end %>
         </div>
-      <% end %>
-    <% end %>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4 booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-   <% if policy(Booking).new? %>
-      <div class="container" >
+      
+
+    <div class="col-xs-12 col-md-4 show-button booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
+      <% if policy(Booking).create? %>
+      <div class="container show-button">
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
       </div>
       <% end %>
     </div>
-  </div>
-  <div class="m-3 p-3 button">
-  <% if policy(@instructor).update? %>
-    <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
-    <% end %>
-    <% if current_user != @instructor.user %>
-    <%= link_to "back", instructors_path %>
-  <% end %>
-  </div>
-  </div>
-</div>
+      </div>
 
+  </div>
+  
+  
+  <div>
+    <div class="m-3 p-3 button"> 
+      <% if policy(@instructor).update? %>
+        <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+        <% end %>
+        <% if current_user != @instructor.user %>
+        <%= link_to "back", instructors_path %>
+      <% end %>
+    </div>
+  </div>
+  
+</div>
 
 
 
