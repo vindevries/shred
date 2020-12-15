@@ -29,6 +29,7 @@ import "bootstrap";
 
 
 import { initStarRating } from '../plugins/init_star_rating';
+import { tagSelect } from "../dom/select2";
 
 
 // Internal imports, e.g:
@@ -38,6 +39,7 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initStarRating();
+  tagSelect();
 
 });
 

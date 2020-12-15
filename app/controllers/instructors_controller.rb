@@ -2,7 +2,7 @@ class InstructorsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
  before_action :avaliable_everything, only: %i[edit new]
   before_action :set_instructor, only: %i[show edit update destroy]
-  
+
   # skip_before_action :authenticate_user!, only: %i[index show]
   def index
     skip_policy_scope
@@ -25,7 +25,6 @@ class InstructorsController < ApplicationController
       # @instructors = @instructors.where(size: params[:search][:size]) if params[:search][:size].present?
 
       # @instructors = @instructors.joins(:tags).where(tags: { name: params[:search][:tag] }).distinct if params[:search][:tag].present?
-
     end
   end
 
@@ -35,14 +34,13 @@ class InstructorsController < ApplicationController
   end
 
   def new
-
     @user = current_user
     @instructor = Instructor.new
     authorize @instructor
-
   end
 
   def create
+    @user = current_user
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
     authorize @instructor
@@ -64,7 +62,6 @@ class InstructorsController < ApplicationController
 
   def edit
     authorize @instructor
-   
   end
 
   def update
