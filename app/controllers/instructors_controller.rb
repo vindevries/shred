@@ -45,10 +45,10 @@ class InstructorsController < ApplicationController
     @instructor.user = current_user
     authorize @instructor
     if @instructor.save
-      params[:instructor][:languages].each do |language_id|
+      params[:languages].each do |language_id|
         InstructorLanguage.create(language_id: language_id, instructor: @instructor)
       end
-      params[:instructor][:locations].each do |location_id|
+      params[:locations].each do |location_id|
         InstructorLocation.create(location_id: location_id, instructor: @instructor)
       end
       params[:instructor][:packages]&.each do |package_id|

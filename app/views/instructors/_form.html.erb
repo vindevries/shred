@@ -9,8 +9,8 @@
       <% end %>
     <% end %>
       <div class="form-group">
-        <label for="language[]">Select the languages you speak:</label>
-        <select id="tag-selector" class="form-control mr-sm-2 mb-3" name="language[]" multiple="multiple">
+        <label for="languages[]">Select the languages you speak:</label>
+        <select id="tag-selector" class="form-control mr-sm-2 mb-3" name="languages[]" multiple="multiple">
           <% Language.all.each do |language| %>
             <option><%= language.name %></option>
           <% end %>
@@ -20,8 +20,8 @@
       <div><%= location.location.name %> <%= link_to "X", location, method: :delete %></div>
     <% end %>
     <div class="form-group">
-      <label for="location[]">Select the locations you serve:</label>
-        <select id="tag-selector-2" class="form-control mr-sm-2 mb-3" name="location[]" multiple="multiple">
+      <label for="locations[]">Select the locations you serve:</label>
+        <select id="tag-selector-2" class="form-control mr-sm-2 mb-3" name="locations[]" multiple="multiple">
           <% Location.all.each do |location| %>
             <option><%= location.name %></option>
           <% end %>
