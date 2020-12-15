@@ -6,10 +6,9 @@ class InstructorsController < ApplicationController
   # skip_before_action :authenticate_user!, only: %i[index show]
   def index
     skip_policy_scope
-    @instructors = Instructor.joins(:instructor_packages).order('instructor_packages.price')
 
     if params[:search].present?
-
+      @instructors = Instructor.all
       if params[:search][:location].present?
         @instructors = @instructors.joins(:locations).where(locations: { name: params[:search][:location] }).distinct
       end
@@ -22,6 +21,11 @@ class InstructorsController < ApplicationController
       if params[:search][:gender].present?
         @instructors = @instructors.where("gender ILIKE ?", "%#{params[:search][:gender]}%")
       end
+      # @instructors = @instructors.where(size: params[:search][:size]) if params[:search][:size].present?
+
+      # @instructors = @instructors.joins(:tags).where(tags: { name: params[:search][:tag] }).distinct if params[:search][:tag].present?
+    else
+      @instructors = Instructor.joins(:instructor_packages).order('instructor_packages.price').uniq
     end
   end
 
