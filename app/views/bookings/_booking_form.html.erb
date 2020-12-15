@@ -1,5 +1,11 @@
 <%= simple_form_for (@booking) do |f| %>
   <%= f.input :description, as: :string %>
   <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
+  <% if !@payment_method_exists %>
+  <%= f.input :card_number, as: :string %>
+  <%= f.input :exp_month, as: :integer %>
+  <%= f.input :exp_year, as: :integer %>
+  <%= f.input :cvv, as: :string %>
+  <% end %>
   <%= f.submit "Complete Booking", class: "btn btn-primary" %>
 <% end %>
