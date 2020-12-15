@@ -8,22 +8,24 @@
         <div><%= language.language.name %> <%= link_to "X", language, method: :delete %></div>
       <% end %>
     <% end %>
-      <div class="form-group">
-        <label for="languages[]">Select the languages you speak:</label>
-        <select id="tag-selector" class="form-control mr-sm-2 mb-3" name="languages[]" multiple="multiple">
-          <% Language.all.each do |language| %>
-            <option><%= language.name %></option>
+      <div class="form-group w-100">
+        <label for="instructor[languages][]">Select the languages you speak:</label>
+        <select id="tag-selector" class="form-control mr-sm-2 mb-3" name="instructor[languages][]" multiple="multiple">
+          <% @available_languages.each do |language| %>
+            <option value="<%= language.id %>"><%= language.name %></option>
           <% end %>
         </select>
       </div>
     <% @instructor.instructor_locations.each do |location| %>
-      <div><%= location.location.name %> <%= link_to "X", location, method: :delete %></div>
+      <% if policy(location).destroy? %>
+        <div><%= location.location.name %> <%= link_to "X", location, method: :delete %></div>
+      <% end %>
     <% end %>
-    <div class="form-group">
-      <label for="locations[]">Select the locations you serve:</label>
-        <select id="tag-selector-2" class="form-control mr-sm-2 mb-3" name="locations[]" multiple="multiple">
-          <% Location.all.each do |location| %>
-            <option><%= location.name %></option>
+    <div class="form-group w-100">
+      <label for="instructor[locations][]">Select the locations you serve:</label>
+        <select id="tag-selector-2" class="form-control mr-sm-2 mb-3" name="instructor[locations][]" multiple="multiple">
+          <% @available_locations.each do |location| %>
+            <option value="<%= location.id %>"><%= location.name %></option>
           <% end %>
         </select>
       </div>
