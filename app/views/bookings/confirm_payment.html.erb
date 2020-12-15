@@ -1,19 +1,16 @@
 <div class="container">
   <div class="row py-4">
     <div class="col">
-      <h1>Checkout summary</h1>
-      <p>Purchase of <strong><%= @booking.package.title %></strong> for <strong><%= @booking.price %></strong></p>
-      <button id="pay" class="btn btn-primary">Pay</button>
-      <script src="https://js.stripe.com/v3/"></script>
-      <script>
-        const paymentButton = document.getElementById('pay');
-        paymentButton.addEventListener('click', () => {
-          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-          stripe.redirectToCheckout({
-            sessionId: '<%= @booking.checkout_session_id %>'
-          });
-        });
-      </script>
+      <h1 class="center">Congradulation! Your booking is requsted!</h1>
+      <h3>Your card will be charged for <%= @booking.price * 0.15 %> rupia after <%= @booking.instructor.user.first_name %> accepts the booking </h3>
+      <ul>
+      <li>You will be notified per mail and sms as soon as your instructor accepts the booking</li>
+      <li>You will get instructor`s contscts per mail and sms</li>
+
+      <li></li>
+      </ul>
+      <p>Purchase of <strong><%= @booking.package.title %></strong> for <strong><%= @booking.price * 0.15 %></strong></p>
+       <%= link_to "GO TO YOUR DASHBOARD", dashboard_path, id: "pay", class: "btn btn-primary" %>
     </div>
   </div>
 </div>
