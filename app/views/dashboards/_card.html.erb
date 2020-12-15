@@ -16,5 +16,11 @@
         <%= link_to "Had the session already? Leave a review!", new_booking_review_path(booking), class: "btn btn-primary mr-2" %>
       <% end %>
     </div>
+    <div class="card-buttons">
+      <% if booking.status == "accepted" %>
+         <p><%= booking.instructor.phone %></p>
+         <p><%= booking.instructor.user.email %></p>
+      <% end %>
+    </div>
   </div>
 </div>
