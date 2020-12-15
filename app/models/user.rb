@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :reviews, dependent: :destroy
   validates :first_name, presence: true
-  after_create :create_stripe_user
 
   def create_stripe_user
     customer = Stripe::Customer.create({
@@ -18,6 +17,6 @@ class User < ApplicationRecord
     self.stripe_user_id = customer.id
     self.save
   end
- 
+
 
 end
