@@ -40,6 +40,7 @@ class InstructorsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @instructor = Instructor.new(instructor_params)
     @instructor.user = current_user
     authorize @instructor
