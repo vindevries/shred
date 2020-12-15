@@ -1,6 +1,6 @@
 class InstructorsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
- before_action :avaliable_everything, only: %i[edit new]
+  before_action :avaliable_everything, only: %i[edit new]
   before_action :set_instructor, only: %i[show edit update destroy]
 
   # skip_before_action :authenticate_user!, only: %i[index show]
@@ -46,10 +46,10 @@ class InstructorsController < ApplicationController
     @instructor.user = current_user
     authorize @instructor
     if @instructor.save
-      params[:languages].each do |language_id|
+      params[:instructor][:languages].each do |language_id|
         InstructorLanguage.create(language_id: language_id, instructor: @instructor)
       end
-      params[:locations].each do |location_id|
+      params[:instructor][:locations].each do |location_id|
         InstructorLocation.create(location_id: location_id, instructor: @instructor)
       end
       params[:instructor][:packages]&.each do |package_id|
@@ -83,6 +83,25 @@ class InstructorsController < ApplicationController
       render :edit
     end
   end
+
+  # def update
+  #   authorize @instructor
+  #   if params[:languages]
+  #     params[:languages].each do |language|
+  #       InstructorLanguage.create(language: Language.where("name =?", language)[0], instructor: @instructor)
+  #     end
+  #   end
+  #   if params[:locations]
+  #     params[:locations].each do |location|
+  #       InstructorLocation.create(location: Location.where("name =?", location)[0], instructor: @instructor)
+  #     end
+  #   end
+  #   if @instructor.update(instructor_params)
+  #     redirect_to instructor_path(@instructor)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
 
