@@ -6,7 +6,7 @@ class InstructorsController < ApplicationController
   # skip_before_action :authenticate_user!, only: %i[index show]
   def index
     skip_policy_scope
-    @instructors = Instructor.all
+    @instructors = Instructor.joins(:instructor_packages).order('instructor_packages.price')
 
     if params[:search].present?
 

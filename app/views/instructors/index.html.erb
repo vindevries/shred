@@ -58,11 +58,10 @@
       </div>
     </form>
   </div>
-  <div class="row mt-5 instructor-card-page">
-    <div class="col-md-10">
-      <% @instructors.each do |instructor| %>
+<div class="row mt-5 instructor-card-page">
+  <div class="col-md-10">
+    <% @instructors.each do |instructor| %>
       <% if instructor.photos.attached? %>
-      <div class="col-md-12">
         <div class="instructor-card-div card flex-row my-4">
           <div class="row w-100">
             <div class="col-md-4 instructor-image-div">
@@ -74,7 +73,7 @@
               </div>
               <div class="card-text-div">
                 <p class="card-text"><%= instructor.description %></p>
-                
+
               </div>
               <div class="card-review-div">
                 <p class="card-text">avarage rating: <%= instructor.average_rating %></p>
@@ -82,24 +81,23 @@
             </div>
             <div class="col-md-3">
               <div class="card-category-div">
+                <div>
+                  <% instructor.instructor_packages.order(:price).each do |i_package| %>
+                  <p><%= i_package.package.title %>: <%= i_package.price %></p>
+                  <% end %>
+                </div>
 
-              <div>  
-                <% instructor.instructor_packages.each do |i_package| %>
-                <p><%= i_package.package.title %>: <%= i_package.price %></p>
-                
-                <% end %>
-              </div>
-
-
-              <div class="mb-1 w-80">
-                <p class="button button-secondary card-view-button"><strong>View</strong></p>
+                <div class="mb-1 w-80">
+                  <p class="button button-secondary card-view-button"><strong>View</strong></p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <% end %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
+
+
 
