@@ -32,11 +32,11 @@ puts "creating 10 users"
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
-    encrypted_password: Faker::Internet.password(min_length: 8)
+    password: Faker::Internet.password(min_length: 8)
   )
   puts 'Creating Instructor...'
   instructor = Instructor.create!(
-    gender: ["male", "female"].sample
+    gender: ["male", "female"].sample,
     description: Faker::Quote.famous_last_words,
     phone: Faker::PhoneNumber.cell_phone_in_e164,
     user: user
@@ -52,7 +52,16 @@ puts "creating 10 users"
   rand(3..6).times do
     InstructorLocation.create(instructor: instructor, location: Location.all.sample)
   end
+
+  begin
+    file = URI.open("https://picsum.photos/id/#{rand(0..300)}/200/300")
+    instructor.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+  rescue
+    instructor.destroy
+  end
+
 end
+
 
 puts "finished"
 

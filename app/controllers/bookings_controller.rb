@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
 
   # /costumes/:costume_id/bookings
   def create
-    raise
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @instructor_package = InstructorPackage.find(params[:booking][:instructor_package_id])
