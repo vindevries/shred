@@ -61,6 +61,7 @@ class BookingsController < ApplicationController
     create_stripe_checkout
     @booking.status = "accepted"
     @booking.save
+    BookingMailer.with(booking: @booking).mail_to_user.deliver_now
     redirect_to dashboard_path
   end
 
