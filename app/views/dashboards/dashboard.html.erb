@@ -1,33 +1,150 @@
-<div class = "container py-5">
+<div class = "container">
 <% if current_user.instructor %>
-  <h2 class="text-center mt-1 mb-3">Your INCOMING Bookings</h2>
-  <div class="row justify-content-center">
-  <% @instructor_pending_bookings.each do |booking| %>
-  <div class="column">
-    <div class="card my-2 rounded" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-header booking-card-header d-flex justify-content-between">
-          <h5><%= booking.instructor_package.package.title %></h5>
-          <h6 class="text-muted">$<%= booking.instructor_package.price %></h6>
+
+<div class="row mt-5 instructor-card-page">
+  <div class="col-md-10">
+ 
+      <% if current_user.instructor.photos.attached? %>
+        <div class="instructor-card-div card flex-row my-4">
+          <div class="row w-100">
+            <div class="col-md-4 instructor-image-div px-0">
+              <%= cl_image_tag current_user.instructor.photos.first.key, class: "instructor-image fit opacity-90" %>
+            </div>
+            <div class="col-md-8 column h-100 card-center-div border-0">
+              <div class="card-title-div d-flex justify-content-between py-3 pr-0">
+                <h3><%= link_to current_user.instructor.user.first_name.capitalize, instructor_path(current_user.instructor)  %></h3>
+                <p > Edit <i class="fas fa-pen"></i> </p>
+              </div>
+              <div class="card-text-div">
+                <p class="card-text"><%= current_user.instructor.description %></p>
+              <br>
+                <p class="card-text opacity-70"><%= rand(1..1000)%> views</p>
+                <p class="card-text opacity-70"><%= current_user.instructor.bookings.where(status: "accepted").count%> successful sessions </p>
+             
+              </div>
+
+
+              <% if current_user.instructor.average_rating %>
+                <div class="row card-review-div">
+                  <div class="col-md-9 column opacity-90">
+                    <% current_user.instructor.average_rating.times do %>
+                    <i class="colornice fas fa-star"></i>
+                  <% end %>
+                  </div>
+                </div>
+             <% end %>
+            </div>
+
         </div>
-        <p>Requested by: <%= booking.user.first_name %></p>
-        <p class="card-text"><%= booking.description %></p>
-        <p class="card-text">Status: <%= booking.status %></p>
-        <div class="card-buttons">
-          <% if booking.status == "pending" %>
-            <% if policy(booking).accept? %>
-              <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
-            <% end %>
-            <% if policy(booking).accept? %>
-              <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
-            <% end %>
-          <% end %>
+      <% end %>
+
+  </div>
+</div>
+
+
+
+<div class="col-12">
+<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pending bookings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Upcoming bookings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Past bookings</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="row justify-content-around py-5">
+      <% @pending_bookings.each do |booking| %>
+      <div class="column">
+        <div class="card my-2 rounded" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-header booking-card-header d-flex justify-content-between">
+              <h5><%= booking.instructor_package.package.title %></h5>
+              <h6 class="text-muted"><%= booking.instructor_package.price %> IRP</h6>
+            </div>
+            <p>Requested by: <%= booking.user.first_name %></p>
+            <p class="card-text">Message: <%= booking.description %></p>
+           
+            <div class="card-buttons opacity-70">
+              <% if booking.status == "pending" %>
+                <% if policy(booking).accept? %>
+                  <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+                <% end %>
+                <% if policy(booking).accept? %>
+                  <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="row justify-content-center">
+      <% @upcoming_bookings.each do |booking| %>
+      <div class="column">
+        <div class="card my-2 rounded" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-header booking-card-header d-flex justify-content-between">
+              <h5><%= booking.instructor_package.package.title %></h5>
+              <h6 class="text-muted">$<%= booking.instructor_package.price %></h6>
+            </div>
+            <p>Requested by: <%= booking.user.first_name %></p>
+            <p class="card-text"><%= booking.description %></p>
+            <p class="card-text">Status: <%= booking.status %></p>
+            <div class="card-buttons">
+              <% if booking.status == "pending" %>
+                <% if policy(booking).accept? %>
+                  <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+                <% end %>
+                <% if policy(booking).accept? %>
+                  <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="row justify-content-center">
+      <% @past_bookings.each do |booking| %>
+      <div class="column">
+        <div class="card my-2 rounded" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-header booking-card-header d-flex justify-content-between">
+              <h5><%= booking.instructor_package.package.title %></h5>
+              <h6 class="text-muted">$<%= booking.instructor_package.price %></h6>
+            </div>
+            <p>Requested by: <%= booking.user.first_name %></p>
+            <p class="card-text"><%= booking.description %></p>
+            <p class="card-text">Status: <%= booking.status %></p>
+            <div class="card-buttons">
+              <% if booking.status == "pending" %>
+                <% if policy(booking).accept? %>
+                  <%= link_to "ACCEPT", accept_booking_path(booking), method: :post, class: "btn btn-primary mr-2" %>
+                <% end %>
+                <% if policy(booking).accept? %>
+                  <%= link_to "REJECT", reject_booking_path(booking), method: :post, class: "btn btn-danger mr-3" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
 <% else %>
   <h2 class="text-center mt-1 mb-3">Your Bookings</h2>
   <% @user_pending_bookings.each do |booking| %>
