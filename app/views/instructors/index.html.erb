@@ -75,6 +75,7 @@
                 <p class="card-text"><%= instructor.description %></p>
 
               </div>
+              <% if instructor.average_rating %>
               <div class="row card-review-div">
                 <div class="col-md-3">
                   <p class="card-text">Rated: <%= instructor.average_rating %></p>
@@ -85,7 +86,7 @@
                   <% end %>
                 </div>
               </div>
-
+             <% end %>
             </div>
             <div class="col-md-3">
               <div class="card-category-div">
