@@ -15,9 +15,8 @@ class Instructor < ApplicationRecord
   def average_rating
     if !reviews.empty?
       reviews.pluck(:rating).sum / reviews.size
-    else
-      "No reviews yet"
     end
+ 
   end
 
   def has_package?(package)
