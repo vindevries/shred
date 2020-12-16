@@ -4,6 +4,7 @@ class Instructor < ApplicationRecord
   has_many :instructor_locations, dependent: :destroy
   has_many :instructor_languages, dependent: :destroy
   has_many :instructor_packages, dependent: :destroy
+  has_many :bookings, through: :instructor_packages, source: :booking
   has_many :locations, through: :instructor_locations
   has_many :languages, through: :instructor_languages
   has_many :packages, through: :instructor_packages
@@ -16,7 +17,6 @@ class Instructor < ApplicationRecord
     if !reviews.empty?
       reviews.pluck(:rating).sum / reviews.size
     end
- 
   end
 
   def has_package?(package)
