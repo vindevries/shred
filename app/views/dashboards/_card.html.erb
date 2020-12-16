@@ -1,4 +1,39 @@
-<div class="card" style="width: 18rem;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card" style="width: 20rem;">
   <div class="card-body">
     <h5 class="card-title"> <%= booking.instructor_package.package.title %></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= booking.instructor_package.price %>$</h6>
@@ -18,6 +53,8 @@
     </div>
     <div class="card-buttons">
       <% if booking.status == "accepted" %>
+
+           <link rel="stylesheet" href=" https://wa.me/#{booking.instructor.phone[1..-1]}">
          <p><%= booking.instructor.phone %></p>
          <p><%= booking.instructor.user.email %></p>
       <% end %>
