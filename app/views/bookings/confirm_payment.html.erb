@@ -1,16 +1,15 @@
-<div class="container">
-  <div class="row py-4">
-    <div class="col">
-      <h1 class="center">Congradulation! Your booking is requsted!</h1>
-      <h3>Your card will be charged for <%= @booking.price * 0.15 %> rupia after <%= @booking.instructor.user.first_name %> accepts the booking </h3>
+<div class="container", style = "width: 500px">
+  <div class="d-flex flex-column align-items-center p-3 mt-3">
+      <h2 class="text-center mb-5">Your booking has been requested!</h2>
+      <h3 class="mb-3 border-top border-bottom py-2">Your card will be charged <%= @booking.price * 0.15 %> IDR once <%= @booking.instructor.user.first_name.capitalize %> accepts the booking </h3>
+      <div class="mt-3 mb-5">
       <ul>
-      <li>You will be notified per mail and sms as soon as your instructor accepts the booking</li>
-      <li>You will get instructor`s contscts per mail and sms</li>
-
-      <li></li>
+        <li>You will be notified via email and sms as soon as your instructor accepts the booking</li>
+        <li>You will recieve the instructor's contact via email and sms</li>
+        <li>The final amount of <%= @booking.price - (@booking.price * 0.15) %> will be paid in cash to your instructor during the lesson</li>
       </ul>
+    </div>
       <p>Purchase of <strong><%= @booking.package.title %></strong> for <strong><%= @booking.price * 0.15 %></strong></p>
        <%= link_to "GO TO YOUR DASHBOARD", dashboard_path, id: "pay", class: "btn btn-primary" %>
     </div>
   </div>
-</div>
