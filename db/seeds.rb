@@ -74,7 +74,7 @@ puts "Creating Johnny"
   puts 'Creating Instructor...'
   johnny2 = Instructor.create!(
     gender: "male",
-    description: "I'm the dude and offer surf lessions for ass, grass, or cash",
+    description: "Never try never know! I'm rocking bro!",
     phone: "+6282147930282",
     user: johnny
   )
@@ -92,15 +92,15 @@ puts "Creating Johnny"
 
     puts "Attaching photo..."
   begin
-    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608015111/SHRED/surfer-kai_fkfzz5.jpg")
+    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608046378/SHRED/Surfer-12_oe0cym.jpg")
     johnny2.photos.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
   rescue
     johnny2.destroy
   end
 
-  review1 = Review.create(title: "Scum of the lowest order.", description: "Tried to charge me 2 million for a broken fin.", rating: 1, user: reviewers.sample, booking: booking1)
-  review2 = Review.create(title: "Total Creep", description: "We agreed via Whatsapp to meet at 9 am by the beach but he was an hour late and visibly hungover. After the session he offered me a ride home if I kissed him. ", rating: 2, user: reviewers.sample, booking: booking2)
-  review3 = Review.create(title: "he never responded to my messages!", description: "Waste of a booking deposit.", rating: 1, user: reviewers.sample, booking: booking3)
+  review1 = Review.create(title: "Scum of the lowest order.", description: "Tried to charge me 2 million for a broken fin.", rating: 1, user: piet, booking: booking1)
+  review2 = Review.create(title: "Total Creep", description: "We agreed via Whatsapp to meet at 9 am by the beach but he was an hour late and visibly hungover. After the session he offered me a ride home if I kissed him. ", rating: 2, user: sarah, booking: booking2)
+  review3 = Review.create(title: "he never responded to my messages!", description: "Waste of a booking deposit.", rating: 1, user: tyler, booking: booking3)
 
   puts "Instructor1 done."
 
@@ -129,6 +129,7 @@ puts "Creating Kartika"
 
     InstructorLanguage.create(instructor: kartika2, language: Language.find_by_name("English"))
     InstructorLanguage.create(instructor: kartika2, language: Language.find_by_name("Dutch"))
+    InstructorLanguage.create(instructor: kartika2, language: Language.find_by_name("Indonesian"))
 
     InstructorLocation.create(instructor: kartika2, location: Location.find_by_name("Kuta Lombok"))
 
@@ -138,15 +139,15 @@ puts "Creating Kartika"
 
     puts "Attaching photo..."
   begin
-    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608015111/SHRED/Surfer-7_dsxdpk.jpg")
+    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608046378/SHRED/Surfer-13_w2oczg.jpg")
     kartika2.photos.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
   rescue
     kartika2.destroy
   end
 
-  review4 = Review.create(title: "Bad Equipment.", description: "The surf equipment we rented was very old.", rating: 2, user: reviewers.sample, booking: booking4)
-  review5 = Review.create(title: "Don't think she know how to surf", description: "Couldn’t really explain to us how to surf. Just pushed our board a bit.", rating: 3, user: reviewers.sample, booking: booking5)
-  review6 = Review.create(title: "A very nice girl.", description: "Showed me a good night out after the session 😉", rating: 5, user: reviewers.sample, booking: booking6)
+  review4 = Review.create(title: "Bad Equipment.", description: "The surf equipment we rented was very old.", rating: 2, user: tyler, booking: booking4)
+  review5 = Review.create(title: "Don't think she know how to surf", description: "Couldn’t really explain to us how to surf. Just pushed our board a bit.", rating: 3, user: sarah, booking: booking5)
+  review6 = Review.create(title: "A very nice girl.", description: "Showed me a good night out after the session 😉", rating: 5, user: piet, booking: booking6)
 
   puts "Instructor2 done."
 
@@ -163,19 +164,21 @@ puts "Creating Dewi"
   puts 'Creating Instructor...'
   dewi2 = Instructor.create!(
     gender: "female",
-    description: "Hi I’m Dewi, I’ve been surfing since I was born and am a retired semi-pro surfer, I am an official ASI-certififed surf instructor and surf coach.",
+    description: "Hi I’m Dewi, I’ve been surfing since I was born and am a retired pro surfer, I am a surf instructor, surf coach, and am passionate wave photographer.",
     phone: "+6282147930282",
     user: dewi
   )
 
   puts "Creating instructor_packages..."
     InstructorPackage.create(instructor: dewi2, package: beginPack1, price: 250000)
-    InstructorPackage.create(instructor: dewi2, package: beginPack2, price: 300000)
+    InstructorPackage.create(instructor: dewi2, package: beginPack2, price: 450000)
     InstructorPackage.create(instructor: dewi2, package: fullPack3, price: 800000)
 
     InstructorLanguage.create(instructor: dewi2, language: Language.find_by_name("English"))
     InstructorLanguage.create(instructor: dewi2, language: Language.find_by_name("German"))
     InstructorLanguage.create(instructor: dewi2, language: Language.find_by_name("Spanish"))
+    InstructorLanguage.create(instructor: dewi2, language: Language.find_by_name("Indonesian"))
+
 
     InstructorLocation.create(instructor: dewi2, location: Location.find_by_name("Kuta Lombok"))
 
@@ -191,12 +194,59 @@ puts "Creating Dewi"
     dewi2.destroy
   end
 
-  review7 = Review.create(title: "Great teacher!", description: "The surf equipment we rented was very old.", rating: 5, user: reviewers.sample, booking: booking7)
-  review8 = Review.create(title: "Best surf photographer you could ask for.", description: "Took very good fotos of me getting my first waves! Got 500 likes for my surf foto on Instagram!", rating: 5, user: reviewers.sample, booking: booking8)
-  review9 = Review.create(title: "She’s got it.", description: "Took us to a secret beginner surf break where we were the only ones there. ", rating: 5, user: reviewers.sample, booking: booking9)
+  review7 = Review.create(title: "Great teacher!", description: "Taught a very brief but comprehensive theory session before our lesson.", rating: 5, user: tyler, booking: booking7)
+  review8 = Review.create(title: "Best surf photographer you could ask for.", description: "Took very good fotos of me getting my first waves! Got 500 likes for my surf foto on Instagram!", rating: 5, user: sarah, booking: booking8)
+  review9 = Review.create(title: "She’s got it.", description: "Took us to a secret beginner surf break where we were the only ones there. ", rating: 5, user: piet, booking: booking9)
 
   puts "Instructor3 done."
 
   # END OF THIS INSTRUCTOR
 
+puts "Creating Riz"
+  riz = User.create!(
+    first_name: "Riz",
+    last_name: "Dog",
+    email: "RizDog@gmail.com",
+    password: "password"
+  )
+
+  puts 'Creating Instructor...'
+  riz2 = Instructor.create!(
+    gender: "male",
+    description: "Hi I’m Riz, I'm a surf guide for experienced surfers.",
+    phone: "+6282147930282",
+    user: riz
+  )
+
+  puts "Creating instructor_packages..."
+    InstructorPackage.create(instructor: riz2, package: intPack1, price: 250000)
+    InstructorPackage.create(instructor: riz2, package: intPack2, price: 300000)
+    InstructorPackage.create(instructor: riz2, package: intPack3, price: 500000)
+
+    InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("English"))
+    InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("German"))
+    InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("Indonesian"))
+
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Kuta Lombok"))
+
+    booking10 = Booking.create(description: "Some description", user: piet, instructor_package: riz2.instructor_packages.sample)
+    booking11 = Booking.create(description: "Some description", user: sarah, instructor_package: riz2.instructor_packages.sample)
+    booking12 = Booking.create(description: "Some description", user: tyler, instructor_package: riz2.instructor_packages.sample)
+
+    puts "Attaching photo..."
+  begin
+    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608046378/SHRED/Surfer-10_tqlka0.jpg")
+    riz2.photos.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
+  rescue
+    riz2.destroy
+  end
+
+  review10 = Review.create(title: "Great guide!", description: "Took us to the secret spots.", rating: 5, user: piet, booking: booking10)
+  review11 = Review.create(title: "Rude", description: "A good guide was a bit arrogant", rating: 3, user: sarah, booking: booking11)
+  review12 = Review.create(title: "He’s got it.", description: "Took us to a secret surf break where we were the only ones there. ", rating: 5, user: tyler, booking: booking12)
+
+  puts "Instructor4 done."
+
+  # END OF THIS INSTRUCTOR
+  
   puts "finished"

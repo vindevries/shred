@@ -1,13 +1,18 @@
-.instructor-card-page {
+.jade-background {
+  background-color: $jade;
+}
+
+.instructor-card-div-outer {
+  background-color: $jade;
+  border-radius: 16px;
+  box-shadow: 0px 0px 2px #898989;
   display: flex;
   justify-content: center;
 }
-
 .instructor-card-div {
   height: 250px;
   border-radius: 16px;
   border: none;
-  box-shadow: 0px 0px 2px #898989;
   color: $gray;
   .row {
     overflow: hidden;
@@ -26,27 +31,48 @@
   justify-content: center;
   align-items: center;
   border-radius: 16px;
+  box-shadow: 0px 0px 2px black;
 }
 
 .instructor-image-div {
   height:250px;
-  border-radius: 16px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-color: transparent;
+  background-color: #32E0C4;
 }
 
 .card-center-div {
   border-right:1px solid $jade;
-  border-left:1px solid $jade;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
 }
 .card-title-div {
   height: 50px;
+  border-top-left-radius: 16px;
 }
 
-.card-text-div {
-  height: 150px;
+.border-left-radius {
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 16px;
+}
+
+.border-radius {
+  border-radius: 12px;
+}
+
+.border-right-radius {
+  border-bottom-right-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card-text-div-div {
+  height: 142px;
 }
 
 .card-review-div {
   height: 50px;
+  border-bottom-left-radius: 16px;
 }
 
 .card-category-div {

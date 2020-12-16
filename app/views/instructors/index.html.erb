@@ -58,52 +58,61 @@
       </div>
     </form>
   </div>
-<div class="row mt-5 instructor-card-page">
-  <div class="col-md-10">
-    <% @instructors.each do |instructor| %>
-      <% if instructor.photos.attached? %>
-        <div class="instructor-card-div card flex-row my-4">
-          <div class="row w-100">
-            <div class="col-md-4 instructor-image-div">
-              <%= cl_image_tag instructor.photos.first.key, class: "instructor-image" %>
-            </div>
-            <div class="col-md-4 column h-100 card-center-div">
-              <div class="card-title-div pt-2">
-                <h3><%= link_to instructor.user.first_name.capitalize, instructor_path(instructor)  %></h3>
-              </div>
-              <div class="card-text-div">
-                <p class="card-text"><%= instructor.description %></p>
 
-              </div>
-              <div class="card-review-div column">
-                  <div>
-                    <p class="card-text">Rated: <%= instructor.average_rating %></p>
+    <div class="row justify-content-center">
+        <% @instructors.each do |instructor| %>
+        <div class="mt-5 col-md-10 justify-content-center">
+          <div class="w-100 instructor-card-div-outer p-1"> 
+          <% if instructor.photos.attached? %>
+            <div class="instructor-card-div card flex-row my-4 w-100  ">
+              <div class="row w-100 jade-background">
+                <div class="col-md-4 instructor-image-div">
+                  <%= cl_image_tag instructor.photos.first.key, class: "instructor-image" %>
+                </div>
+                <div class="col-md-4 column h-100 card-center-div pt-2 bg-white">
+                  <div class="card-title-div pt-2 border-left-radius">
+                    <h3><%= link_to instructor.user.first_name.capitalize, instructor_path(instructor)  %></h3>
                   </div>
-                  <div>  
-                    <%  instructor.average_rating.times do %>
-                    <i class="colornice fas fa-star"></i>
-                    <% end %>
+                  <div class="card-text-div-div">
+                    <p class="card-text"><%= instructor.description %></p>
                   </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              
-                <div class="card-category-div row col-md-12 p-2">
-                  <% instructor.instructor_packages.order(:price).each do |i_package| %>
-                  <div class="column col-md-8"><%= i_package.package.title %>:</div><div class="column col-md-4"> <%= i_package.price %></div>
+                  <% if instructor.average_rating %>
+                    <div class="row card-review-div">
+                      <div class="col-md-3 border-bottom-left-radius-16px pr-0 pt-1">
+                        <p class="card-text pr-0">Rated:</p>
+                      </div>
+                      <div class="col-md-2 column pl-0">
+                        <p class="btn button-secondary"><%= instructor.average_rating.to_f %></p>
+                      </div>
+                      <div class="col-md-7 column pt-1">
+                        <% instructor.average_rating.times do %>
+                        <i class="colornice fas fa-star"></i>
+                        <% end %>
+                      </div>
+                  </div>
                   <% end %>
                 </div>
-              
-              <div class="mb-1 w-80">
-                <p class="button button-secondary card-view-button"><strong>View</strong></p>
+                <div class="col-md-4 bg-white border-right-radius">
+                  
+                    <div class="card-category-div row col-md-12 pt-3">
+                      <% instructor.instructor_packages.order(:price).each do |i_package| %>
+                      <div class="column col-md-8"><%= i_package.package.title %>:</div><div class="column col-md-4"> <%= i_package.price %></div>
+                      <% end %>
+                    </div>
+                  
+                  <div class="w-80">
+                    <p><%= link_to "View", instructor_path(instructor), class: "button button-secondary card-view-button font-weight-bold"  %></p>
+                  </div>
+                </div>
               </div>
             </div>
+          <% end %>
           </div>
+          </div>
+        <% end %>
         </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+      </div>
+   </div>    
 
 
 
