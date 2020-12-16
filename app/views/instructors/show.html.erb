@@ -1,7 +1,9 @@
 <div class = "py-5 px-5">
   <div class="row w-100 justify-content-around">
-    <div class="col-xs-12 col-md-7 shadow show-description-div show-review">
-      <div class="p-4">
+
+<!--   Info Card start -->
+
+    <div class="col-xs-12 col-md-7 shadow show-description-div show-review p-4">
         <h2><%= @instructor.user.first_name.capitalize %></h2>
         <div class="bg-grey row col-12 card-header box-shadow my-3 border-radius background-color-grey">
           <div class="column col-3 p-0">
@@ -36,14 +38,12 @@
         </div>
         <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
         <%= link_to "update packages", instructor_packages_path %>
-      </div>
     </div>
-    <div class="col-xs-12 col-md-4 shadow show-image-div">
-        <div class="show-image">
-        <% @instructor.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
-      </div>
+
+<!-- Info card end -->
+
+
+    <div class="col-xs-12 col-md-4 shadow show-image-div" style="background-image: url('<%= cl_image_path @instructor.photos.first.key %>')">
     </div>
   </div>
   <div class="row w-100 mt-4 justify-content-around show-review-div">
@@ -58,49 +58,34 @@
               <div class="mt-1 ml-1">
                 <h5 class="card-title mt-1">Rated:<h5>
               </div>
-
               <div>
                 <p class="btn button-secondary mx-2"><%= review.rating %></p>
               </div>
-
               <div class="mt-2">
                 <%  review.rating.times do %>
                 <i class="colornice fas fa-star"></i>
                 <% end %>
               </div>
-
-
-
             </div>
-
-
-
           <div class="card-body">
             <h5 class="card-title"><%= review.title %></h5>
             <p class="card-text"><%= review.description %></p>
-
           </div>
           Review from <%= review.user.first_name %>
         </div>
-
         <% end %>
         <% end %>
         </div>
-
-
     <div class="col-xs-12 col-md-4 show-button booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-      <% if policy(Booking).create? %>
       <div class="container show-button">
+      <% if policy(Booking).create? %>
         <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
         <%= render "bookings/booking_form" %>
-      </div>
       <% end %>
+      </div>
     </div>
       </div>
-
   </div>
-
-
   <div>
     <div class="m-3 p-3 button">
       <% if policy(@instructor).update? %>
