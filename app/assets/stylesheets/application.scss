@@ -88,3 +88,9 @@ color: #F1BE19
 .opacity-100 {
   opacity: 1;
 }
+
+.edit {
+  &:hover {
+    opacity: 1;
+  }
+}
