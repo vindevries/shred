@@ -4,41 +4,44 @@
 <!--   Info Card start -->
 
     <div class="col-xs-12 col-md-7 shadow show-description-div show-review p-4">
-        <h2><%= @instructor.user.first_name.capitalize %></h2>
-        <div class="bg-grey row col-12 card-header box-shadow my-3 border-radius background-color-grey">
-          <div class="column col-3 p-0">
-            <p>Location:</p>
-            <p>Languages:</p>
-          </div>
-          <div class="column col-9 p-0">
+      <h2><%= @instructor.user.first_name.capitalize %></h2>
+      <div class="bg-grey card-header box-shadow my-3 border-radius background-color-grey">
+         <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
+        <div class="w-100">
+          <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+          <p>Locations:</p>
+          <div style="width: 35%">
+            <ul>
             <% @instructor.locations.each do |location| %>
-              <p><%= location.name %></p>
-            <% end %>
-            <p>
-            <% @instructor.languages.each do |language| %>
-              <%= language.name %>
-            <% end %>
-            </p>
-          </div>
-          <div class=" col-12 p-0">
-            <p><strong>Packages:</strong></p>
-          </div>
-          <div class="row w-100 ml-0">
-            <div class="column col-3 p-0">
-              <% @instructor.instructor_packages.each do |i_package| %>
-              <p><%= i_package.package.title %>:</p>
-              <% end %>
-            </div>
-            <div class="column col-9 p-0">
-              <% @instructor.instructor_packages.each do |i_package| %>
-                  <p><%= i_package.price %></p>
-              <% end %>
-            </div>
+              <li><%= location.name %></li>
+          <% end %>
+          </ul>
           </div>
         </div>
-        <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
+        <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+          <p>Languages:</p>
+          <div style="width: 35%">
+            <ul>
+              <% @instructor.languages.each do |language| %>
+            <li><%= language.name %></li>
+          <% end %>
+        </ul>
+        </div>
+        </div>
+        <div class="row">
+          <p>Offers:</p>
+          <div><% @instructor.instructor_packages.each do |i_package| %>
+            <p><%= i_package.package.title %>:</p>
+          <% end %>
+            <% @instructor.instructor_packages.each do |i_package| %>
+              <p><%= i_package.price %></p>
+          <% end %></div>
+        </div>
         <%= link_to "update packages", instructor_packages_path %>
-    </div>
+     </div>
+  </div>
+</div>
+
 
 <!-- Info card end -->
 

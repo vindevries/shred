@@ -1,0 +1,12 @@
+<div class="small-package-card p-3 border bg-white shadow-sm rounded" id="package-<%= package.id%>">
+  <% @instructor.instructor_packages.each do |package| %>
+    <h3><%= package.title %></h3>
+    <% if package.rental %>
+      <p>includes rental</p>
+    <% end %>
+    <% if package.photographer %>
+      <p>plus photographer</p>
+    <% end %>
+    <p><%= package.price %> IDR</p>
+  <% end %>
+</div>
