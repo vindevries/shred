@@ -98,9 +98,9 @@ puts "Creating Johnny"
     johnny2.destroy
   end
 
-  review1 = Review.create(title: "Scum of the lowest order.", description: "Tried to charge me 2 million for a broken fin.", rating: 1, user: reviewers.sample, booking: booking1)
-  review2 = Review.create(title: "Total Creep", description: "We agreed via Whatsapp to meet at 9 am by the beach but he was an hour late and visibly hungover. After the session he offered me a ride home if I kissed him. ", rating: 2, user: reviewers.sample, booking: booking2)
-  review3 = Review.create(title: "he never responded to my messages!", description: "Waste of a booking deposit.", rating: 1, user: reviewers.sample, booking: booking3)
+  review1 = Review.create(title: "Scum of the lowest order.", description: "Tried to charge me 2 million for a broken fin.", rating: 1, user: piet, booking: booking1)
+  review2 = Review.create(title: "Total Creep", description: "We agreed via Whatsapp to meet at 9 am by the beach but he was an hour late and visibly hungover. After the session he offered me a ride home if I kissed him. ", rating: 2, user: sarah, booking: booking2)
+  review3 = Review.create(title: "he never responded to my messages!", description: "Waste of a booking deposit.", rating: 1, user: tyler, booking: booking3)
 
   puts "Instructor1 done."
 
@@ -145,9 +145,9 @@ puts "Creating Kartika"
     kartika2.destroy
   end
 
-  review4 = Review.create(title: "Bad Equipment.", description: "The surf equipment we rented was very old.", rating: 2, user: reviewers.sample, booking: booking4)
-  review5 = Review.create(title: "Don't think she know how to surf", description: "Couldn’t really explain to us how to surf. Just pushed our board a bit.", rating: 3, user: reviewers.sample, booking: booking5)
-  review6 = Review.create(title: "A very nice girl.", description: "Showed me a good night out after the session 😉", rating: 5, user: reviewers.sample, booking: booking6)
+  review4 = Review.create(title: "Bad Equipment.", description: "The surf equipment we rented was very old.", rating: 2, user: tyler, booking: booking4)
+  review5 = Review.create(title: "Don't think she know how to surf", description: "Couldn’t really explain to us how to surf. Just pushed our board a bit.", rating: 3, user: sarah, booking: booking5)
+  review6 = Review.create(title: "A very nice girl.", description: "Showed me a good night out after the session 😉", rating: 5, user: piet, booking: booking6)
 
   puts "Instructor2 done."
 
@@ -194,9 +194,9 @@ puts "Creating Dewi"
     dewi2.destroy
   end
 
-  review7 = Review.create(title: "Great teacher!", description: "Taught a very brief but comprehensive theory session before our lesson.", rating: 5, user: reviewers.sample, booking: booking7)
-  review8 = Review.create(title: "Best surf photographer you could ask for.", description: "Took very good fotos of me getting my first waves! Got 500 likes for my surf foto on Instagram!", rating: 5, user: reviewers.sample, booking: booking8)
-  review9 = Review.create(title: "She’s got it.", description: "Took us to a secret beginner surf break where we were the only ones there. ", rating: 5, user: reviewers.sample, booking: booking9)
+  review7 = Review.create(title: "Great teacher!", description: "Taught a very brief but comprehensive theory session before our lesson.", rating: 5, user: tyler, booking: booking7)
+  review8 = Review.create(title: "Best surf photographer you could ask for.", description: "Took very good fotos of me getting my first waves! Got 500 likes for my surf foto on Instagram!", rating: 5, user: sarah, booking: booking8)
+  review9 = Review.create(title: "She’s got it.", description: "Took us to a secret beginner surf break where we were the only ones there. ", rating: 5, user: piet, booking: booking9)
 
   puts "Instructor3 done."
 
@@ -241,9 +241,9 @@ puts "Creating Riz"
     riz2.destroy
   end
 
-  review10 = Review.create(title: "Great guide!", description: "Took us to the secret spots.", rating: 5, user: reviewers.sample, booking: booking10)
-  review11 = Review.create(title: "Rude", description: "A good guide was a bit arrogant", rating: 3, user: reviewers.sample, booking: booking11)
-  review12 = Review.create(title: "He’s got it.", description: "Took us to a secret surf break where we were the only ones there. ", rating: 5, user: reviewers.sample, booking: booking12)
+  review10 = Review.create(title: "Great guide!", description: "Took us to the secret spots.", rating: 5, user: piet, booking: booking10)
+  review11 = Review.create(title: "Rude", description: "A good guide was a bit arrogant", rating: 3, user: sarah, booking: booking11)
+  review12 = Review.create(title: "He’s got it.", description: "Took us to a secret surf break where we were the only ones there. ", rating: 5, user: tyler, booking: booking12)
 
   puts "Instructor4 done."
 
