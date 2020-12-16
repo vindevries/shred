@@ -67,29 +67,35 @@
             <div class="col-md-4 instructor-image-div">
               <%= cl_image_tag instructor.photos.first.key, class: "instructor-image" %>
             </div>
-            <div class="col-md-5 column h-100 card-center-div">
-              <div class="card-title-div">
+            <div class="col-md-4 column h-100 card-center-div">
+              <div class="card-title-div pt-2">
                 <h3><%= link_to instructor.user.first_name.capitalize, instructor_path(instructor)  %></h3>
               </div>
               <div class="card-text-div">
                 <p class="card-text"><%= instructor.description %></p>
 
               </div>
-              <div class="card-review-div">
-                <p class="card-text">avarage rating: <%= instructor.average_rating %></p>
+              <div class="card-review-div column">
+                  <div>
+                    <p class="card-text">Rated: <%= instructor.average_rating %></p>
+                  </div>
+                  <div>  
+                    <%  instructor.average_rating.times do %>
+                    <i class="colornice fas fa-star"></i>
+                    <% end %>
+                  </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="card-category-div">
-                <div>
+            <div class="col-md-4">
+              
+                <div class="card-category-div row col-md-12 p-2">
                   <% instructor.instructor_packages.order(:price).each do |i_package| %>
-                  <p><%= i_package.package.title %>: <%= i_package.price %></p>
+                  <div class="column col-md-8"><%= i_package.package.title %>:</div><div class="column col-md-4"> <%= i_package.price %></div>
                   <% end %>
                 </div>
-
-                <div class="mb-1 w-80">
-                  <p class="button button-secondary card-view-button"><strong>View</strong></p>
-                </div>
+              
+              <div class="mb-1 w-80">
+                <p class="button button-secondary card-view-button"><strong>View</strong></p>
               </div>
             </div>
           </div>
