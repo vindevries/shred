@@ -1,12 +1,23 @@
-<div class = "py-5 px-5">
+  <div class=" d-flex justify-content-end w-100">
+   <div class="m-3 p-3 button">
+      <% if policy(@instructor).update? %>
+        <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
+        <% end %>
+        <% if current_user != @instructor.user %>
+        <%= link_to "back", instructors_path %>
+      <% end %>
+    </div>
+  </div>
+
+<div class="container">
   <div class="row w-100 justify-content-around">
 
 <!--   Info Card start -->
 
-    <div class="col-xs-12 col-md-7 shadow show-description-div show-review p-4">
+    <div class="col-xs-12 col-md-6 shadow show-description-div show-review p-4">
       <h2><%= @instructor.user.first_name.capitalize %></h2>
+         <p class="border-radius card-header box-shadow my-3 background-color-grey"><%= @instructor.description %></p>
       <div class="bg-grey card-header box-shadow my-3 border-radius background-color-grey">
-         <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
         <div class="w-100">
           <div class="d-flex justify-content-between align-items-center border-bottom py-2">
           <p>Locations:</p>
@@ -18,7 +29,7 @@
           </ul>
           </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+        <div class="d-flex justify-content-between align-items-center mt-2 py-2">
           <p>Languages:</p>
           <div style="width: 35%">
             <ul>
@@ -28,16 +39,6 @@
         </ul>
         </div>
         </div>
-        <div class="row">
-          <p>Offers:</p>
-          <div><% @instructor.instructor_packages.each do |i_package| %>
-            <p><%= i_package.package.title %>:</p>
-          <% end %>
-            <% @instructor.instructor_packages.each do |i_package| %>
-              <p><%= i_package.price %></p>
-          <% end %></div>
-        </div>
-        <%= link_to "update packages", instructor_packages_path %>
      </div>
   </div>
 </div>
@@ -45,10 +46,38 @@
 
 <!-- Info card end -->
 
+<!-- profile image start -->
 
     <div class="col-xs-12 col-md-4 shadow show-image-div" style="background-image: url('<%= cl_image_path @instructor.photos.first.key %>')">
     </div>
   </div>
+<!--
+  profile image end -->
+
+<!-- package card start -->
+<div class="row w-100 justify-content-around">
+<div class="col-xs-12 col-md-6 px-0">
+  <div class="shadow show-description-div show-review p-4 mt-3">
+      <%= render "small_instructor_package_card", instructor: @instructor %>
+        <%= link_to "update packages", instructor_packages_path %>
+    </div>
+</div>
+<div class="col-xs-12 col-md-4 p-0">
+<div class="show-button booking-form-wrapper w-100 text-dark shadow p-3 bg-white border-radius">
+      <div class="container show-button">
+      <% if policy(Booking).create? %>
+        <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+        <%= render "bookings/booking_form" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- package card end -->
+
   <div class="row w-100 mt-4 justify-content-around show-review-div">
     <% if @instructor.reviews.empty? %>
       <h5>No reviews yet</h5>
@@ -60,7 +89,7 @@
             <div class="row justify-content-start">
               <div class="mt-1 ml-1">
                 <h5 class="card-title mt-1">Rated:<h5>
-              </div>
+
               <div>
                 <p class="btn button-secondary mx-2"><%= review.rating %></p>
               </div>
@@ -76,36 +105,16 @@
           </div>
           Review from <%= review.user.first_name %>
         </div>
+        </div>
         <% end %>
         <% end %>
         </div>
-    <div class="col-xs-12 col-md-4 show-button booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-      <div class="container show-button">
-      <% if policy(Booking).create? %>
-        <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
-        <%= render "bookings/booking_form" %>
-      <% end %>
-      </div>
-    </div>
       </div>
   </div>
   <div>
-    <div class="m-3 p-3 button">
-      <% if policy(@instructor).update? %>
-        <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
-        <% end %>
-        <% if current_user != @instructor.user %>
-        <%= link_to "back", instructors_path %>
-      <% end %>
-    </div>
   </div>
 
 </div>
-
-
-
-
-
 
 
 
