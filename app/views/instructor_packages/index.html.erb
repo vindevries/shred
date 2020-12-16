@@ -3,7 +3,7 @@
     <p class="mt-5 p-2">Please choose which packages you would like to offer and enter a corresponding price:</p>
     <% @packages.each do |package| %>
       <div class="col-md-4">
-        <div class="package-card p-3 m-3 border bg-light shadow-sm rounded" id="package-<%= package.id%>">
+        <div class="package-card p-3 m-3 border bg-light shadow-sm" id="package-<%= package.id%>">
             <h2><%= package.title %></h2>
             <% if package.duration %>
               <h2><%= package.duration %> hours</h2>

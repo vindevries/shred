@@ -1,0 +1,16 @@
+<div class="row">
+  <% @instructor.instructor_packages.each do |i_package| %>
+    <div class="col-xs-12 col-md-6">
+      <div class="small-package-card p-3 bg-white shadow-lg">
+        <p><%= i_package.package.title %></p>
+        <% if i_package.package.rental %>
+          <p>includes rental</p>
+        <% end %>
+        <% if i_package.package.photographer %>
+          <p>plus photographer</p>
+        <% end %>
+        <p><%= i_package.price %> IDR</p>
+      </div>
+    </div>
+  <% end %>
+</div>

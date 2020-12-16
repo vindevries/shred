@@ -1,113 +1,5 @@
-<div class = "py-5 px-5">
-  <div class="row w-100 justify-content-around">
-    <div class="col-xs-12 col-md-7 shadow show-description-div show-review">
-      <div class="p-4">
-        <h2><%= @instructor.user.first_name.capitalize %></h2>
-        <div class="bg-grey row col-12 card-header box-shadow my-3 border-radius background-color-grey">
-          <div class="column col-3 p-0">
-            <p>Location:</p>
-            <p>Languages:</p>
-          </div>
-          <div class="column col-9 p-0">
-            <% @instructor.locations.each do |location| %>
-              <p><%= location.name %></p>
-            <% end %>
-            <p>
-            <% @instructor.languages.each do |language| %>
-              <%= language.name %>
-            <% end %>
-            </p>
-          </div>
-          <div class=" col-12 p-0">
-            <p><strong>Packages:</strong></p>
-          </div>
-          <div class="row w-100 ml-0">
-            <div class="column col-3 p-0">
-              <% @instructor.instructor_packages.each do |i_package| %>
-              <p><%= i_package.package.title %>:</p>
-              <% end %>
-            </div>
-            <div class="column col-9 p-0">
-              <% @instructor.instructor_packages.each do |i_package| %>
-                  <p><%= i_package.price %></p>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <p class="card-header box-shadow my-3 border-radius background-color-grey"><%= @instructor.description %></p>
-        <%= link_to "update packages", instructor_packages_path %>
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-4 shadow show-image-div">
-        <div class="show-image">
-        <% @instructor.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row w-100 mt-4 justify-content-around show-review-div">
-
-    <% if @instructor.reviews.empty? %>
-    <h5>No reviews yet</h5>
-    <% else %>
-    <div class="col-xs-12 col-md-7 show-review shadow p-3">
-      <h2>Reviews</h2>
-      <% @instructor.reviews.each do |review| %>
-
-        <div class="card-header box-shadow my-3 border-radius background-color-grey">
-
-            <div class="row justify-content-start">
-
-              <div class="mt-1 ml-1">
-                <h5 class="card-title mt-1">Rated:<h5>
-              </div>
-
-              <div>
-                <p class="btn button-secondary mx-2"><%= review.rating %></p>
-              </div>
-
-              <div class="mt-2">
-                <%  review.rating.times do %>
-                <i class="colornice fas fa-star"></i>
-                <% end %>
-              </div>
-
-
-
-            </div>
-
-
-
-          <div class="card-body">
-            <h5 class="card-title"><%= review.title %></h5>
-            <p class="card-text"><%= review.description %></p>
-
-          </div>
-          Review from <%= review.user.first_name %>
-        </div>
-
-        <% end %>
-        <% end %>
-        </div>
-
-
-    <div class="col-xs-12 col-md-4 show-button booking-form-wrapper text-dark shadow p-3 bg-white border-radius">
-      <% if policy(Booking).create? %>
-      <div class="container show-button">
-        <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
-        <%= render "bookings/booking_form" %>
-      </div>
-      <% end %>
-    </div>
-      </div>
-
-  </div>
-
-
-  <div>
-    <div class="m-3 p-3 button">
+  <div class=" d-flex justify-content-end w-100">
+   <div class="m-3 p-3 button">
       <% if policy(@instructor).update? %>
         <%= link_to "Edit my Profile", edit_instructor_path(@instructor) %>
         <% end %>
@@ -117,12 +9,112 @@
     </div>
   </div>
 
+<div class="container">
+  <div class="row w-100 justify-content-around">
+
+<!--   Info Card start -->
+
+    <div class="col-xs-12 col-md-6 shadow show-description-div show-review p-4">
+      <h2><%= @instructor.user.first_name.capitalize %></h2>
+         <p class="border-radius card-header box-shadow my-3 background-color-grey"><%= @instructor.description %></p>
+      <div class="bg-grey card-header box-shadow my-3 border-radius background-color-grey">
+        <div class="w-100">
+          <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+          <p>Locations:</p>
+          <div style="width: 35%">
+            <ul>
+            <% @instructor.locations.each do |location| %>
+              <li><%= location.name %></li>
+          <% end %>
+          </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2 py-2">
+          <p>Languages:</p>
+          <div style="width: 35%">
+            <ul>
+              <% @instructor.languages.each do |language| %>
+            <li><%= language.name %></li>
+          <% end %>
+        </ul>
+        </div>
+        </div>
+     </div>
+  </div>
 </div>
 
 
+<!-- Info card end -->
 
+<!-- profile image start -->
 
+    <div class="col-xs-12 col-md-4 shadow show-image-div" style="background-image: url('<%= cl_image_path @instructor.photos.first.key %>')">
+    </div>
+  </div>
+<!--
+  profile image end -->
 
+<!-- package card start -->
+<div class="row w-100 justify-content-around">
+<div class="col-xs-12 col-md-6 px-0">
+  <div class="shadow show-description-div show-review p-4 mt-3">
+      <%= render "small_instructor_package_card", instructor: @instructor %>
+        <%= link_to "update packages", instructor_packages_path %>
+    </div>
+</div>
+<div class="col-xs-12 col-md-4 p-0">
+<div class="show-button booking-form-wrapper w-100 text-dark shadow p-3 bg-white border-radius">
+      <div class="container show-button">
+      <% if policy(Booking).create? %>
+        <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+        <%= render "bookings/booking_form" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- package card end -->
+
+  <div class="row w-100 mt-4 justify-content-around show-review-div">
+    <% if @instructor.reviews.empty? %>
+      <h5>No reviews yet</h5>
+    <% else %>
+      <div class="col-xs-12 col-md-7 show-review shadow p-3">
+      <h2>Reviews</h2>
+      <% @instructor.reviews.each do |review| %>
+        <div class="card-header box-shadow my-3 border-radius background-color-grey">
+            <div class="row justify-content-start">
+              <div class="mt-1 ml-1">
+                <h5 class="card-title mt-1">Rated:<h5>
+
+              <div>
+                <p class="btn button-secondary mx-2"><%= review.rating %></p>
+              </div>
+              <div class="mt-2">
+                <%  review.rating.times do %>
+                <i class="colornice fas fa-star"></i>
+                <% end %>
+              </div>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= review.title %></h5>
+            <p class="card-text"><%= review.description %></p>
+          </div>
+          Review from <%= review.user.first_name %>
+        </div>
+        </div>
+        <% end %>
+        <% end %>
+        </div>
+      </div>
+  </div>
+  <div>
+  </div>
+
+</div>
 
 
 
