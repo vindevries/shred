@@ -1,15 +1,20 @@
 <div class="row">
   <% @instructor.instructor_packages.each do |i_package| %>
     <div class="col-xs-12 col-md-6">
-      <div class="small-package-card p-3 bg-white shadow-lg">
-        <p><%= i_package.package.title %></p>
+      <div class="small-package-card p-3 bg-white shadow-sm">
+        <p class="sm-pkg-card-header text-center shadow-sm rounded"><%= i_package.package.title %></p>
+        <div class="d-flex justify-content-around p-2">
+          <% if i_package.package.rental || i_package.package.photographer %>
+          <p>Includes:</p>
+          <% end %>
         <% if i_package.package.rental %>
-          <p>includes rental</p>
+          <%= image_tag "surfboard.png", class:"image-icon" %>
         <% end %>
         <% if i_package.package.photographer %>
-          <p>plus photographer</p>
+          <%= image_tag "camera.png", class:"image-icon" %>
         <% end %>
-        <p><%= i_package.price %> IDR</p>
+        </div>
+        <p class="text-center text-muted mb-0">Rp <%= i_package.price %></p>
       </div>
     </div>
   <% end %>

@@ -55,6 +55,11 @@
   background-color: $jade;
 }
 
+.show-review-div {
+   width: 1000px;
+   margin: auto;
+}
+
 .show-button {
   height: 650px;
   margin-top: 16px;
@@ -141,4 +146,8 @@
 
 .helper {
   border: 1px solid black;
+}
+
+.checked {
+  color: orange;
 }

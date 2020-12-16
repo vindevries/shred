@@ -1,5 +1,15 @@
 .small-package-card {
   border-radius: 16px;
-  height: 200px;
+  // height: 160px;
   margin: 8px 0px 8px 0px;
+  border-style: outset;
+}
+
+.sm-pkg-card-header {
+  font-size: 20px;
+}
+
+.image-icon {
+  width: 30px;
+  height: 30px;
 }
