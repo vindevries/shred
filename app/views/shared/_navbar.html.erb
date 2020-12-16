@@ -2,7 +2,8 @@
   <%= link_to root_path, class: "navbar-brand brand" do %>
     <%= image_tag "logo.png" %>
     <% end %>
-      <h1 class="shred-header">S H R E D</h1>
+    <div class="shred-header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path("https://res.cloudinary.com/apbdevries/image/upload/v1608129226/SHRED/ShredLogo_my8rfj.png", width: 400, height: 300, crop: :fill) %>;">
+    </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,7 +25,7 @@
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag current_user.instructor.photos.first.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
             <% if current_user.instructor&.id %>
