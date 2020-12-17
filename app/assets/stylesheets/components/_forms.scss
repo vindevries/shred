@@ -3,5 +3,18 @@
   }
 
   .form-input-wrapper {
-    width: 300px
+    width: 300px;
   }
+
+  .new-inst-form {
+    width:  600px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,.4);
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
