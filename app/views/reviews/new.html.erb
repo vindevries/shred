@@ -1,11 +1,17 @@
-<div class = "container py-5">
-  <h2>Leave a review for <%= @booking.instructor.user.first_name %></h2>
-  <%= simple_form_for [@booking, @review] do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :rating, :collection => [1, 2, 3, 4, 5]%>
-    <%= f.submit "Leave a review", class: "btn btn-primary" %>
-  <% end %>
-<div>
+<div class="flex-container vh-100">
+  <div class="flex-item d-flex flex-column align-items-center p-3 mt-3">
+    <h2>Leave a review for <%= @booking.instructor.user.first_name %></h2>
+    <%= simple_form_for [@booking, @review] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :rating, :collection => [1, 2, 3, 4, 5]%>
+      <%= f.submit "Leave a review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="flex-item">
+    <div class="devise-right h-100" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path "https://res.cloudinary.com/apbdevries/image/upload/v1607410877/SHRED/Surfer-1_pcgxo1.jpg", width: 400, height: 300, crop: :fill %>)">
+    </div>
+  </div>
+</div>
 
 
