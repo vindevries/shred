@@ -98,8 +98,8 @@ puts "Creating Johnny"
     johnny2.destroy
   end
 
-  review1 = Review.create(title: "Scum of the lowest order.", description: "Tried to charge me 2 million for a broken fin.", rating: 1, user: piet, booking: booking1)
-  review2 = Review.create(title: "Total Creep", description: "We agreed via Whatsapp to meet at 9 am by the beach but he was an hour late and visibly hungover. After the session he offered me a ride home if I kissed him. ", rating: 2, user: sarah, booking: booking2)
+  review1 = Review.create(title: "Rip off.", description: "Tried to charge me 2 million for a broken fin.", rating: 1, user: piet, booking: booking1)
+  review2 = Review.create(title: "Unreliable", description: "We agreed via Whatsapp to meet at 9 am by the beach but he was an hour late and visibly hungover.", rating: 2, user: sarah, booking: booking2)
   review3 = Review.create(title: "he never responded to my messages!", description: "Waste of a booking deposit.", rating: 1, user: tyler, booking: booking3)
 
   puts "Instructor1 done."
