@@ -19,6 +19,14 @@ class Instructor < ApplicationRecord
     end
   end
 
+    def average_rating1
+    if !reviews.empty?
+      reviews.pluck(:rating).sum / reviews.size.to_f
+     
+    end
+    
+  end
+
   def has_package?(package)
     InstructorPackage.find_by(instructor: self, package: package)
   end

@@ -84,7 +84,8 @@
                         <p class="card-text pr-0">Rated:</p>
                       </div>
                       <div class="col-md-2 column pl-0">
-                        <p class="btn button-secondary"><%= instructor.average_rating.to_f %></p>
+                        <p class="btn button-secondary"><%= instructor.average_rating1.round(1) %></p>
+                        
                       </div>
                       <div class="col-md-7 column pt-1">
                         <% instructor.average_rating.times do %>
