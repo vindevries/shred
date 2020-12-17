@@ -10,7 +10,7 @@ class InstructorsController < ApplicationController
     if params[:search].present?
       @instructors = Instructor.all
       if params[:search][:location].present?
-        @instructors = @instructors.joins(:locations).where(locations: { name: params[:search][:location] }).distinct
+        @instructors = @instructors.joins(:locations).where("locations.name ILIKE ?", "%#{params[:search][:location]}%").distinct
       end
       if params[:search][:language].present?
         @instructors = @instructors.joins(:languages).where(languages: { name: params[:search][:language] }).distinct
