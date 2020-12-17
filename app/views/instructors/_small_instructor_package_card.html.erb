@@ -1,7 +1,7 @@
 <div class="row">
   <% @instructor.instructor_packages.each do |i_package| %>
     <div class="col-xs-12 col-md-6">
-      <div class="small-package-card p-3 bg-white shadow-sm">
+      <div class="small-package-card p-3 bg-white">
         <p class="sm-pkg-card-header text-center shadow-sm rounded"><%= i_package.package.title %></p>
         <div class="d-flex justify-content-around p-2">
           <% if i_package.package.rental || i_package.package.photographer %>

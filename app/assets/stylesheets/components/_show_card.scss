@@ -151,3 +151,25 @@
 .checked {
   color: orange;
 }
+
+.btn-show {
+  background-color: white;
+  box-shadow: 1px 1px;
+  margin-top: 8px;
+  border-radius: 8px;
+  :hover {
+    text-decoration: none;
+  }
+}
+
+
+.edit-image-icon {
+  width: 30px;
+  height: 30px;
+  opacity: .6;
+}
+
+.edit-image-icon:hover {
+  opacity: 1;
+}
+
