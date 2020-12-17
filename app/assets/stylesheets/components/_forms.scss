@@ -7,14 +7,20 @@
   }
 
   .new-inst-form {
-    width:  600px;
-    box-shadow: 4px 4px 8px rgba(0,0,0,.4);
+    box-shadow: 4px 4px 8px rgba(0,0,0,.2);
     border-radius: 16px;
     padding: 16px;
+    background-color: #F9F9F9;
   }
 
 .center {
   margin: auto;
   width: 50%;
   padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .center {
+    width: 100%;
+  }
 }

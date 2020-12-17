@@ -1,6 +1,6 @@
 
 <div class="container">
-  <div class="row w-100 justify-content-around mt-5">
+  <div class="row mx-0 w-100 justify-content-between mt-5">
 <!--   Info Card start -->
     <div class="col-xs-12 col-md-6 shadow show-description-div show-review p-4">
       <div class="d-flex justify-content-between">
@@ -16,7 +16,7 @@
         <div class="w-100">
           <div class="d-flex justify-content-between align-items-center border-bottom py-2">
             <p>Locations:</p>
-            <div style="width: 35%">
+            <div>
               <ul>
               <% @instructor.locations.each do |location| %>
                 <li><%= location.name %></li>
@@ -26,7 +26,7 @@
           </div>
         <div class="d-flex justify-content-between align-items-center mt-2 py-2">
           <p>Languages:</p>
-          <div style="width: 35%">
+          <div>
             <ul>
             <% @instructor.languages.each do |language| %>
               <li><%= language.name %></li>
@@ -46,7 +46,7 @@
 </div>
 
 <!-- package card start -->
-<div class="row w-100 justify-content-around">
+<div class="row mx-0 w-100 justify-content-around">
   <div class="col-xs-12 col-md-6 px-0">
     <div class="shadow show-description-div show-review p-4 mt-3">
       <div class="d-flex justify-content-end">
@@ -67,16 +67,16 @@
       <div class="show-button booking-form-wrapper w-100 text-dark shadow p-3 bg-white border-radius">
         <div class="container show-button">
           <h2 class="text-center">Book <%= @instructor.user.first_name.capitalize %></h2>
+          <p>*Your card will only be charged 15% if <%= @instructor.user.first_name.capitalize %> accepts, full price will be due in cash during lesson</p>
           <%= render "bookings/booking_form" %>
         </div>
       </div>
     </div>
   <% end %>
-</div>
 <!-- booking card end -->
 
 <!-- review card start -->
-  <div class="mt-4 show-review-div">
+  <div class="col-12 mt-4 show-review-div px-0">
     <% if @instructor.reviews.empty? %>
       <h5><%= @instructor.user.first_name %> has no reviews yet</h5>
     <% else %>
@@ -84,25 +84,27 @@
         <h3>Reviews</h3>
         <% @instructor.reviews.each do |review| %>
           <div class="card-header box-shadow my-3 border-radius background-color-grey">
-            <p class="btn button-secondary"><%= review.rating %></p>
+            <div class="d-flex justify-content-between flex-row-reverse">
+            <div><p class="btn button-secondary"><%= review.rating %></p>
             <%  review.rating.times do %>
-              <i class="colornice fas fa-star"></i>
-            <% end %>
-            <div class="card-body">
+              <i class="d-none d-sm-inline-block colornice fas fa-star"></i>
+            <% end %></div>
               <h5 class="card-title"><%= review.title %></h5>
+            </div>
+            <div class="card-body p-0 pl-3 pb-3">
               <p class="card-text"><%= review.description %></p>
             </div>
-            <p><%= review.user.first_name %></p>
+            <p class="mb-0"><%= review.user.first_name %></p>
           </div>
         <% end %>
       </div>
     <% end %>
   </div>
+</div>
 <!-- review card end -->
 
 </div>
-</div>
-</div>
+
 
 
 
