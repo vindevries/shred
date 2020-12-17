@@ -1,6 +1,6 @@
 <%= simple_form_for (@booking) do |f| %>
-  <%= f.input :description, as: :string %>
-  <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| [i_package.package.title, i_package.id] } %>
+  <%= f.association :instructor_package, collection: @instructor.instructor_packages.map { |i_package| ["#{i_package.package.title} #{'+ rental' if i_package.package.rental} #{'+ photo' if i_package.package.photographer}", i_package.id] }, label: "Choose a package"%>
+  <%= f.input :description, as: :text, label: "Send #{@instructor.user.first_name} a brief message" %>
   <% if !@payment_method_exists %>
   <%= f.input :card_number, as: :string %>
   <%= f.input :exp_month, as: :integer %>

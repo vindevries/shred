@@ -12,7 +12,12 @@
   font-weight: none;
   margin: 6px 0px;
 }
-  
+
+.button:hover {
+    box-shadow: 1px 1px 4px rgba(0,0,0,.2);
+    transition-duration: 0.2s;
+  }
+
 .button-secondary {
   background-color: $jade;
   color: $black;
@@ -39,3 +44,21 @@
   border-bottom-right-radius: 0px;
   width: 100%;
 }
+
+.complete-profile-btn {
+  background-color: $jade;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 8px;
+  opacity: .7;
+  transition-duration: 0.3s;
+  box-shadow: 1px 1px 4px rgba(0,0,0,.2);
+  font-weight: bold;
+}
+
+  .complete-profile-btn:hover {
+    text-decoration: none;
+    color: white;
+    opacity: 1;
+  }
+
