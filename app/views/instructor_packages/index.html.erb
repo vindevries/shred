@@ -1,25 +1,25 @@
 <div class="container">
-  <div class="row">
     <p class="mt-5 p-2">Please choose which packages you would like to offer and enter a corresponding price:</p>
+  <div class="row">
     <% @packages.each do |package| %>
-      <div class="col-md-4">
-        <div class="package-card p-3 m-3 border bg-light shadow-sm" id="package-<%= package.id%>">
-            <h2><%= package.title %></h2>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="package-card" id="package-<%= package.id%>">
+            <h3 class="text-center pt-2"><%= package.title %></h3>
             <% if package.duration %>
-              <h2><%= package.duration %> hours</h2>
+              <p><%= package.duration %> hours</p>
             <% end %>
             <% if package.rental %>
-              <h2>+ Rental</h2>
+               <p>includes rental <%= image_tag "surfboard.png", class:"image-icon" %></p>
             <% end %>
             <% if package.photographer %>
-              <h2><i class="fas fa-camera-retro"></i></h2>
+              <p>includes photographer <%= image_tag "camera.png", class:"image-icon" %></p>
             <% end %>
             <% your_package = @instructor.has_package?(package) %>
             <% if !your_package && policy(InstructorPackage).create? %>
               <%= simple_form_for @instructor_package, remote: true do |f| %>
                 <%= f.input :package_id, input_html: {value: package.id}, as: :hidden %>
                 <%= f.input :price %>
-                <%= f.submit %>
+                <div class="d-flex w-100 justify-content-center"><%= f.submit 'Add package', class: 'button' %></div>
               <% end %>
             <% else %>
               <% if policy(your_package).destroy? %>
@@ -30,7 +30,7 @@
         </div>
       <% end %>
     </div>
-  <div class="container d-flex justify-content-center">
-    <%= link_to "Complete Profile", @instructor, :class => "btn btn-primary" %>
+  <div class="container d-flex justify-content-center mt-4">
+    <%= link_to "Complete Profile", @instructor, :class => "complete-profile-btn" %>
   </div>
 </div>
