@@ -18,7 +18,7 @@
   <body>
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
-    <div class= "content">
+    <div class= "content <%= 'no-padding' if devise_controller? || action_name == "confirm_payment" || controller_name == "reviews" && action_name == "new" %>  ">
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>
