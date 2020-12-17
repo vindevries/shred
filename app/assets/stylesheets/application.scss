@@ -16,7 +16,8 @@
 
 .content {
   padding-top: 72px;
-  height: 100vh;
+  padding-bottom: 100px;
+  min-height: 100vh;
 }
 
 @media only screen and (max-width: 600px) {
