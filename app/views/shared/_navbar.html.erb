@@ -19,7 +19,9 @@
         <li class="nav-item hidden-md">
           <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
           <% if current_user.instructor&.id %>
-          <%= link_to "View my profile", instructor_path(current_user.instructor), class: "dropdown-item" %>
+            <%= link_to "View my profile", instructor_path(current_user.instructor), class: "dropdown-item" %>
+          <% else %>
+            <%= link_to "View all Instructors", instructors_path, class: "dropdown-item" %>
           <% end %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </li>
@@ -32,7 +34,9 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
             <% if current_user.instructor&.id %>
-            <%= link_to "View my profile", instructor_path(current_user.instructor), class: "dropdown-item" %>
+              <%= link_to "View my profile", instructor_path(current_user.instructor), class: "dropdown-item" %>
+            <% else %>
+              <%= link_to "View all Instructors", instructors_path, class: "dropdown-item" %>
             <% end %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
