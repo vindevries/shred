@@ -227,7 +227,7 @@ puts "Creating Riz"
     InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("German"))
     InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("Indonesian"))
 
-    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Kuta Lombok"))
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Canggu Bali"))
 
     booking10 = Booking.create(description: "Some description", user: piet, instructor_package: riz2.instructor_packages.sample)
     booking11 = Booking.create(description: "Some description", user: sarah, instructor_package: riz2.instructor_packages.sample)
@@ -248,5 +248,95 @@ puts "Creating Riz"
   puts "Instructor4 done."
 
   # END OF THIS INSTRUCTOR
-  
+
+puts "Creating Alit"
+  alit = User.create!(
+    first_name: "Alit",
+    last_name: "Alit",
+    email: "AlitAlit@gmail.com",
+    password: "password"
+  )
+
+  puts 'Creating Instructor...'
+  alit2 = Instructor.create!(
+    gender: "male",
+    description: "Hi I’m Alit, I give beginner lesson and take surf photos. I've been surfing all my life.",
+    phone: "+6282147930282",
+    user: alit
+  )
+
+  puts "Creating instructor_packages..."
+    InstructorPackage.create(instructor: alit2, package: beginPack1, price: 200000)
+    InstructorPackage.create(instructor: alit2, package: beginPack2, price: 450000)
+
+    InstructorLanguage.create(instructor: alit2, language: Language.find_by_name("English"))
+    InstructorLanguage.create(instructor: alit2, language: Language.find_by_name("Indonesian"))
+
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Canggu Bali"))
+
+    booking13 = Booking.create(description: "Some description", user: piet, instructor_package: alit2.instructor_packages.sample)
+    booking14 = Booking.create(description: "Some description", user: sarah, instructor_package: alit2.instructor_packages.sample)
+    booking15 = Booking.create(description: "Some description", user: tyler, instructor_package: alit2.instructor_packages.sample)
+
+    puts "Attaching photo..."
+  begin
+    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608258527/SHRED/surfer-14_uqw1km.jpg")
+    alit2.photos.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
+  rescue
+    alit2.destroy
+  end
+
+  review13 = Review.create(title: "unreliable", description: "was 2 hours late to our lesson.", rating: 2, user: piet, booking: booking13)
+  review14 = Review.create(title: "Rude", description: "A good guide but was a bit arrogant", rating: 3, user: sarah, booking: booking14)
+  review15 = Review.create(title: "He’s got it.", description: "Took us to a secret surf break where we were the only ones there. ", rating: 5, user: tyler, booking: booking15)
+
+  puts "Instructor5 done."
+
+  # END OF THIS INSTRUCTOR
+
+puts "Creating Rosita"
+  rosita = User.create!(
+    first_name: "Rosita",
+    last_name: "Rosita",
+    email: "RositaRosita@gmail.com",
+    password: "password"
+  )
+
+  puts 'Creating Instructor...'
+  rosita2 = Instructor.create!(
+    gender: "female",
+    description: "Hi I’m Rosita, I give beginner lesson and take surf photos. I've been surfing all my life.",
+    phone: "+6282147930282",
+    user: rosita
+  )
+
+  puts "Creating instructor_packages..."
+    InstructorPackage.create(instructor: rosita2, package: beginPack1, price: 200000)
+    InstructorPackage.create(instructor: rosita2, package: beginPack2, price: 400000)
+
+    InstructorLanguage.create(instructor: rosita2, language: Language.find_by_name("English"))
+    InstructorLanguage.create(instructor: rosita2, language: Language.find_by_name("Indonesian"))
+
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Canggu Bali"))
+
+    booking16 = Booking.create(description: "Some description", user: piet, instructor_package: rosita2.instructor_packages.sample)
+    booking17 = Booking.create(description: "Some description", user: sarah, instructor_package: rosita2.instructor_packages.sample)
+    booking18 = Booking.create(description: "Some description", user: tyler, instructor_package: rosita2.instructor_packages.sample)
+
+    puts "Attaching photo..."
+  begin
+    file = URI.open("https://res.cloudinary.com/apbdevries/image/upload/v1608260199/SHRED/Surfer-15_ttjdvd.jpg")
+    rosita2.photos.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
+  rescue
+    rosita2.destroy
+  end
+
+  review16 = Review.create(title: "unreliable", description: "was 2 hours late to our lesson.", rating: 1, user: piet, booking: booking16)
+  review17 = Review.create(title: "Nice instructor", description: "A good guide and took me out after", rating: 4, user: sarah, booking: booking17)
+  review18 = Review.create(title: "She’s got it.", description: "Took us to a secret surf break where we were the only ones there. ", rating: 5, user: tyler, booking: booking18)
+
+  puts "Instructor6 done."
+
+  # END OF THIS INSTRUCTOR
+
   puts "finished"
