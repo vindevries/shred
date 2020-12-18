@@ -1,3 +1,19 @@
+.navbar-lewagon {
+  justify-content: space-between;
+  background: $jade;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  box-shadow: 1px 1px 2px #000000;
+  .logo{
+    width:50px
+  }
+  .collapse{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
@@ -8,14 +24,53 @@
 
 
 
-.navbar-lewagon {
-  justify-content: space-between;
-  background: $jade;
-  position: fixed;
-  width: 100%;
-  z-index: 2;
-  box-shadow: 1px 1px 2px #000000;
+@media only screen and (min-width: 501px) {
+.navbar-nav{
+  margin-right: 0 !important
 }
+}
+
+
+
+
+@media only screen and (max-width: 500px) {
+  .navbar-nav {
+    margin-right: auto
+  }
+  .collapse{
+    display: none
+  }
+  .collapse:not(.show) {
+    display: none !important;
+}
+.navbar-brand{
+  width: auto !important;
+}
+.navbar-nav{
+  margin-right: auto !important
+}
+
+
+}
+
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
+
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
+
+
+
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: $jade;
+//   position: fixed;
+//   width: 100%;
+//   z-index: 2;
+//   box-shadow: 1px 1px 2px #000000;
+// }
 
 // .navbar-lewagon .navbar-collapse {
 //   flex-grow: 0;
