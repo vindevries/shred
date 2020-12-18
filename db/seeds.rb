@@ -260,7 +260,7 @@ puts "Creating Alit"
   puts 'Creating Instructor...'
   alit2 = Instructor.create!(
     gender: "male",
-    description: "Hi I’m Alit, I give beginner lesson and take surf photos. I've been surfing all my life.",
+    description: "Hi I’m Alit, I know all the best surf spots in Bali and love to show people around the island!",
     phone: "+6282147930282",
     user: alit
   )
@@ -268,6 +268,7 @@ puts "Creating Alit"
   puts "Creating instructor_packages..."
     InstructorPackage.create(instructor: alit2, package: beginPack1, price: 200000)
     InstructorPackage.create(instructor: alit2, package: beginPack2, price: 450000)
+    InstructorPackage.create(instructor: alit2, package: fullPack3, price: 900000)
 
     InstructorLanguage.create(instructor: alit2, language: Language.find_by_name("English"))
     InstructorLanguage.create(instructor: alit2, language: Language.find_by_name("Indonesian"))
