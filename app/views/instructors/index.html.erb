@@ -2,7 +2,7 @@
   <div>
     <form class="" action="/instructors">
       <div class="row justify-content-center">
-     
+
         <div class="col-md-3">
             <div class="d-flex justify-content-between">
               <input class="form-control mr-sm-2" type="text" name="search[location]" placeholder="Enter City" aria-label="Search">
@@ -57,14 +57,14 @@
           <button class="btn btn-outline-success px-4 my-2 my-sm-0 align-self-end" type="submit">Search</button>
         </div>
       </div>
-  
+
     </form>
   </div>
 
     <div class="row justify-content-center">
         <% @instructors.each do |instructor| %>
         <div class="mt-5 col-md-10 justify-content-center">
-          <div class="w-100 instructor-card-div-outer p-1 pr-3"> 
+          <div class="w-100 instructor-card-div-outer p-1 pr-3">
           <% if instructor.photos.attached? %>
             <div class="instructor-card-div card flex-row my-4 w-100  ">
               <div class="row w-100 jade-background">
@@ -76,7 +76,7 @@
                     <h3><%= link_to instructor.user.first_name.capitalize, instructor_path(instructor)  %></h3>
                   </div>
                   <div class="card-text-div-div">
-                    <p class="card-text"><%= instructor.description %></p>
+                    <p class="card-text pl-2 pt-2"><%= instructor.description %></p>
                   </div>
                   <% if instructor.average_rating %>
                     <div class="row card-review-div">
@@ -85,27 +85,36 @@
                       </div>
                       <div class="col-md-2 column pl-0">
                         <p class="btn button-secondary"><%= instructor.average_rating1.round(1) %></p>
-                        
+
                       </div>
                       <div class="col-md-7 column pt-1">
                         <% instructor.average_rating.times do %>
-                        <i class="colornice fas fa-star"></i>
+                          <i class="colornice fas fa-star"></i>
                         <% end %>
                       </div>
                   </div>
                   <% end %>
                 </div>
                 <div class="col-md-4 bg-white border-right-radius">
-                  
                     <div class="card-category-div row col-md-12 pt-3">
-                      <% instructor.instructor_packages.order(:price).each do |i_package| %>
-                      <div class="column col-md-8"><%= i_package.package.title %>:</div><div class="column col-md-4"> <%= i_package.price %></div>
+                      <% instructor.instructor_packages.joins(:package).order('packages.title').each do |i_package| %>
+                        <div class="column col-md-12 d-flex justify-content-between">
+                          <%= i_package.package.title %>:
+                          <div>
+                            <% if i_package.package.rental? %>
+                              <%= image_tag "surfboard.png", class: "image-icon #{'mr-2' if i_package.package.photographer?}" %>
+                            <% end %>
+                            <% if i_package.package.photographer? %>
+                              <%= image_tag "camera.png", class: "image-icon" %>
+                            <% end %>
+                          </div>
+                        </div>
                       <% end %>
                     </div>
-                  
-                  <div class="w-80">
-                    <p><%= link_to "View", instructor_path(instructor), class: "button button-secondary card-view-button font-weight-bold"  %></p>
-                  </div>
+
+                    <div class="d-flex justify-content-end">
+                      <%= link_to "View", instructor_path(instructor), class: "button button-secondary card-view-button index-view-btn font-weight-bold"  %>
+                    </div>
                 </div>
               </div>
             </div>
@@ -115,7 +124,7 @@
         <% end %>
         </div>
       </div>
-   </div>    
+   </div>
 
 
 

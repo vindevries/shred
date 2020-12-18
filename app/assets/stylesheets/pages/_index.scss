@@ -1,3 +1,11 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "flexpages";
+
+.index-view-btn {
+  width: unset;
+  display: inline-block;
+  padding-top: 6px;
+  margin: 0;
+  padding: 6px 24px;
+}
