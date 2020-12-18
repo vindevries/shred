@@ -48,7 +48,6 @@ color: #F1BE19
 
 }
 
-
 .opacity-0 {
   opacity: 0;
 }
@@ -97,4 +96,13 @@ color: #F1BE19
   &:hover {
     opacity: 1;
   }
+}
+
+
+.cover {
+  background-size: cover
+}
+
+.marginr0 {
+  margin-right: 0;
 }
