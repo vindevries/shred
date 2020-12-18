@@ -227,7 +227,7 @@ puts "Creating Riz"
     InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("German"))
     InstructorLanguage.create(instructor: riz2, language: Language.find_by_name("Indonesian"))
 
-    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Canggu Bali"))
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Bali Canggu"))
 
     booking10 = Booking.create(description: "Some description", user: piet, instructor_package: riz2.instructor_packages.sample)
     booking11 = Booking.create(description: "Some description", user: sarah, instructor_package: riz2.instructor_packages.sample)
@@ -272,7 +272,7 @@ puts "Creating Alit"
     InstructorLanguage.create(instructor: alit2, language: Language.find_by_name("English"))
     InstructorLanguage.create(instructor: alit2, language: Language.find_by_name("Indonesian"))
 
-    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Canggu Bali"))
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Bali Canggu"))
 
     booking13 = Booking.create(description: "Some description", user: piet, instructor_package: alit2.instructor_packages.sample)
     booking14 = Booking.create(description: "Some description", user: sarah, instructor_package: alit2.instructor_packages.sample)
@@ -317,7 +317,7 @@ puts "Creating Rosita"
     InstructorLanguage.create(instructor: rosita2, language: Language.find_by_name("English"))
     InstructorLanguage.create(instructor: rosita2, language: Language.find_by_name("Indonesian"))
 
-    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Canggu Bali"))
+    InstructorLocation.create(instructor: riz2, location: Location.find_by_name("Bali Canggu"))
 
     booking16 = Booking.create(description: "Some description", user: piet, instructor_package: rosita2.instructor_packages.sample)
     booking17 = Booking.create(description: "Some description", user: sarah, instructor_package: rosita2.instructor_packages.sample)
